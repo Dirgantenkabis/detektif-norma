@@ -663,3 +663,153 @@ Seluruh 7 Fase Perbaikan Tampilan & UX Game **"Detektif Norma"** telah tuntas 10
 - **3. Keputusan:**
   - Seluruh layout HP Tegak diimplementasikan murni lewat CSS tanpa mengubah struktur DOM atau ID elemen `index.html`.
   - Sesuai instruksi: **BERHENTI DAN LAPOR**.
+
+---
+
+### FASE 3: PAPAN KASUS DI HP MENDATAR (667x375, 844x390, 740x360, 932x430)
+- **Status:** SELESAI & TERVERIFIKASI PENUH ✅
+- **1. Apa yang Diubah:**
+  - `style.css` (Murni di dalam `@media (orientation: landscape) and (max-height: 520px)`):
+    - **Grid Template Areas Papan Kasus:** `#screen-board` disusun dengan `grid-template-columns: 1fr 96px`, `grid-template-rows: auto auto 1fr auto`, dan `grid-template-areas: "header header" "teams teams" "case teacher" "stamps stamps"`.
+    - **Header Satu Baris Tipis:** `#board-header` disetel tinggi 38px (rentang target: 36-40px), memuat tombol Menu, indikator progres & HOTS, timer, tombol suara, dan tombol fullscreen.
+    - **Strip Kelompok Tipis di Bawah Header:** `.teams-sidebar` disetel tinggi 34px (rentang target: 32-34px) dengan kartu kelompok model chip horizontal 32px, menampilkan nama, dot warna, dan badge skor, dengan dukungan scroll horizontal jika bermain 5 kelompok.
+    - **Area Tengah (Berkas Kasus & Petunjuk Horizontal):** `#case-folder` memakai sisa lebar layar di sebelah kiri rel guru, teks kasus berukuran 18px (`--fs-case`), dan 3 kotak petunjuk berderet horizontal (`grid-template-columns: repeat(3, 1fr)`).
+    - **Rel Guru di Sisi Kanan:** `.teacher-sidebar` disetel lebar 96px di sisi kanan berkas kasus, memuat 4 tombol vertikal dengan tinggi minimal >= 44px (ikon di atas label: Petunjuk, Jeda, Batal, Selesai). Tombol "Selesai Sekarang" tetap berwarna merah bahaya (`.btn-danger`).
+    - **Stempel Norma Satu Baris di Bawah:** `.stamps-section` menata 4 stempel norma dalam satu baris horizontal (4 kolom, tinggi 54px, rentang target: 52-56px). Keterangan kecil norma disembunyikan (`display: none`), sedangkan nama norma dan ikon SVG tetap tampil jelas dan kontras.
+    - **Bottom Sheet Alasan & Penjelasan:** Panel evaluasi alasan diformat menjadi bottom sheet (`position: fixed; bottom: 0; max-height: min(70%, calc(100vh - 128px))`, scroll internal, tombol aksi menempel di bawah sheet).
+    - **Stempel TERPECAHKAN di Sudut Berkas:** `#stamp-terpecahkan` diposisikan di sudut kanan atas berkas kasus dengan ukuran proporsional (`scale(0.38)`), sehingga tetap terlihat utuh dan tidak tertutup oleh bottom sheet pada seluruh ukuran layar landscape.
+    - **Penanganan Animasi Bounce:** Menonaktifkan animasi keyframe `stamp-bounce` pada `#case-folder` di mode mobile agar browser tidak membentuk containing block baru yang dapat memerangkap elemen `position: fixed`.
+- **2. Apa yang Diuji & Hasil Verifikasi Otomasi (`test_phase3_hp.py`):**
+  - **Uji Selisih Piksel TV / Desktop (Target: 0 Piksel):**
+    - `Start Screen (1080p)`: 0 piksel berbeda ✅
+    - `Board Screen (1080p)`: 0 piksel berbeda ✅
+    - `Result Screen (1080p)`: 0 piksel berbeda ✅
+    - `Start Screen (768p)`: 0 piksel berbeda ✅
+    - `Board Screen (768p)`: 0 piksel berbeda ✅
+    - `Result Screen (768p)`: 0 piksel berbeda ✅
+    - **Hasil: 100% IDENTIK DENGAN BASELINE ASLI (Selisih piksel = 0)**
+  - **Uji 4 Ukuran HP Mendatar (667x375, 844x390, 740x360, 932x430) untuk 2 dan 5 Kelompok (termasuk kasus HOTS terpanjang):**
+    - `Page Scroll`: `False` (0 scroll) pada semua ukuran dan skenario ✅
+    - `Tinggi Header`: 38.0px (Target: 36-40px) ✅
+    - `Tinggi Strip Kelompok`: 34.0px (Target: 32-34px) ✅
+    - `Petunjuk 1-3 Horizontal`: `True` (3 kolom horizontal) ✅
+    - `Lebar Rel Guru`: 96.0px (Target: ~96px) ✅
+    - `Tinggi Tombol Rel Guru`: 53.0px - 70.5px (Target: >= 44px) ✅
+    - `Tinggi Stempel Norma`: 54.0px (Target: 52-56px, 1 baris 4 kolom) ✅
+    - `Keterangan Kecil Stempel Norma Tersembunyi`: `True` ✅
+    - `Deteksi Tumpang Tindih (Header, Strip, Berkas, Rel Guru, Stempel)`: 0 overlap (`False`) ✅
+    - `Bottom Sheet Height`: 64.4% - 67.4% (Target: <= 70%) ✅
+    - `Teks Kasus di Atas Sheet`: `True` (terbaca utuh tanpa tertutup) ✅
+    - `Stempel TERPECAHKAN Tidak Tertutup Sheet`: `True` (tampil di sudut atas berkas) ✅
+    - `Tinggi Tombol Alasan Masuk Akal & Lanjut`: 44.0px (Target: >= 44px) ✅
+    - `Tinggi Tombol Kasus Berikutnya`: 44.0px (Target: >= 44px, menempel di bawah sheet) ✅
+  - **Uji Rotasi dari Tegak ke Mendatar di Tengah Permainan:**
+    - State sebelum rotasi: Case=0, Timer=2s, Running=True, ActiveTeam=2
+    - State setelah rotasi: Case=0, Timer=3s, Running=True, ActiveTeam=2
+    - **Hasil: State, timer, dan kelompok terpilih tidak berubah sama sekali ✅**
+  - **Uji Simulasi Penuh 12 Kasus di HP Mendatar (844x390):**
+    - Menyelesaikan 12 kasus berturut-turut dari kasus 1 hingga 12 dalam orientasi landscape.
+    - Berhasil transisi ke layar hasil (`screen-result`) dengan perhitungan skor dan lencana akurat ✅
+- **3. Keputusan:**
+  - Layout HP Mendatar didefinisikan murni lewat media query `@media (orientation: landscape) and (max-height: 520px)`.
+  - ID elemen, struktur DOM, logika skor, timer, dan aturan alur game 100% dipertahankan tanpa perubahan.
+  - Sesuai instruksi: **BERHENTI DAN LAPOR**.
+
+---
+
+### FASE 4: LAYAR LAIN DI HP (TEGAK DAN MENDATAR)
+- **Status:** SELESAI & TERVERIFIKASI PENUH ✅
+- **1. Apa yang Diubah:**
+  - `style.css` (Murni di dalam media query mobile):
+    - **Layar Awal (`#screen-start`):**
+      - Judul diskalakan dengan aman menggunakan `clamp(22px, 6.8vw, 32px)` pada HP Tegak dan `20px` pada HP Mendatar.
+      - Tombol Mulai berukuran besar (tinggi minimal 52px di tegak, 44px di mendatar, mudah dijangkau jempol).
+      - Tombol toolbar kecil menggunakan flex wrap pada HP tegak dan baris tipis pada HP mendatar sehingga muat di seluruh lebar layar tanpa terpotong.
+      - Ilustrasi SVG detektif diskalakan proporsional (`max-height: clamp(60px, 14vh, 120px)`) agar footer kredit materi Bu Fina & hak cipta Mas Dirga tetap tampil utuh tanpa scroll.
+    - **Setup Kelompok (`#screen-setup`):**
+      - Tombol pilihan jumlah kelompok (2, 3, 4, 5) ditata dalam satu baris grid (`repeat(4, 1fr)`), tinggi >= 52px di tegak dan >= 44px di mendatar.
+      - Pratinjau nama kelompok aktif dengan tombol Ubah. Input penamaan di modal edit nama dilengkapi `scrollIntoView` otomatis saat fokus agar tidak tertutup virtual keyboard ponsel.
+    - **Modal-Modal (`modal-rules`, `modal-about`, `modal-role-reminder`, `modal-edit-names`):**
+      - Tinggi maksimal dibatasi `90dvh` (dengan fallback `90vh`).
+      - Bagian isi menggunakan scroll vertikal mandiri (`overflow-y: auto`, `-webkit-overflow-scrolling: touch`).
+      - Tombol tutup ✕ dan tombol konfirmasi selalu terlihat dengan target sentuh minimal 44px.
+    - **Blok Pindai QR di Modal Tentang (`#qr-mobile-block`):**
+      - Menampilkan kartu kode QR dengan ilustrasi dari `assets/qr-detektif-norma.png` dan alamat teks `detektif-norma.pages.dev`.
+      - Dilengkapi penanganan `onerror` cerdas yang otomatis menyembunyikan blok jika berkas gambar tidak ditemukan, tanpa memicu error atau merusak layout.
+    - **Layar Hasil Penyelidikan (`#screen-result`):**
+      - Podium juara menyesuaikan lebar layar ponsel (100% lebar, tanpa scroll horizontal).
+      - Kelompok peringkat 4 dan 5 tampil sebagai kartu horizontal penuh lebar (`remaining-team-card`) sehingga teks tidak bertumpuk atau patah.
+      - Lencana prestasi tetap terbaca jelas (`podium-badge`).
+      - Tiga tombol aksi (Main Lagi, Peringkat, Menu Utama) menempel rapi di bagian bawah layar (`position: sticky; bottom: 0`) dengan tinggi >= 44px.
+    - **Papan Peringkat (`#screen-leaderboard`):**
+      - Baris tabel beralih menjadi format kartu fleksibel per baris di HP tegak (`#leaderboard-rows tr` display flex column).
+      - Tombol bilah alat guru (Ekspor, Impor, Hapus) membungkus rapi dalam lebar layar ponsel.
+      - Input file impor cadangan menggunakan teknik cross-platform (`position: absolute; opacity: 0; width: 1px; height: 1px;`) yang bekerja sempurna di browser seluler Android dan iOS Safari tanpa diblokir sistem keamanan file picker.
+- **2. Apa yang Diuji & Hasil Verifikasi Otomasi (`test_phase4_hp.py`):**
+  - **Uji Selisih Piksel TV / Desktop (Target: 0 Piksel):**
+    - `Start Screen (1080p)`: 0 piksel berbeda ✅
+    - `Board Screen (1080p)`: 0 piksel berbeda ✅
+    - `Result Screen (1080p)`: 0 piksel berbeda ✅
+    - `Start Screen (768p)`: 0 piksel berbeda ✅
+    - `Board Screen (768p)`: 0 piksel berbeda ✅
+    - `Result Screen (768p)`: 0 piksel berbeda ✅
+    - **Hasil: 100% IDENTIK DENGAN BASELINE ASLI (Selisih piksel = 0)**
+  - **Uji Layar Awal di 5 Viewport HP (Tegak & Mendatar):**
+    - `Page Scroll`: `False` (0 scroll) pada iPhone 13/14, iPhone SE, Android Small Portrait, iPhone SE Landscape, Android Small Landscape ✅
+    - `Judul Pas di Layar`: `True` ✅
+    - `Tinggi Tombol Mulai`: 52.0px di Tegak, 44.0px di Mendatar (Target: >= 44px) ✅
+    - `Toolbar Muat Lebar`: `True` ✅
+    - `Footer Kredit Utuh`: `True` ✅
+  - **Uji Setup Kelompok & Ubah Nama:**
+    - `Tombol 2,3,4,5 Muat 1 Baris`: `True` ✅
+    - `Tinggi Tombol Pilihan`: 56.0px - 61.0px (Target: >= 44px) ✅
+    - `Modal Edit Nama Max Height`: <= 90% (47% - 90%) ✅
+    - `Fokus Input & ScrollIntoView`: `True` ✅
+  - **Uji Seluruh Modal:**
+    - `Tinggi Modal Card`: <= 90dvh (84.9% - 90.0%) ✅
+    - `Tinggi Tombol Tutup / Aksi`: 44.0px - 48.0px (Target: >= 40px) ✅
+    - `Scroll Internal Modal Body`: `True` ✅
+    - `Konfigurasi Blok QR di Modal Tentang`: `True` ✅
+  - **Uji Layar Hasil Penyelidikan:**
+    - `Bebas Scrollbar Halaman`: `True` ✅
+    - `Podium Pas di Lebar Layar`: `True` ✅
+    - `Kartu Tim Peringkat 4 & 5 Penuh Lebar`: `True` (width >= 75% viewport) ✅
+    - `Lencana Terlihat & Terbaca`: `True` ✅
+    - `Tombol Aksi Menempel di Bawah`: `True` (Sticky bottom) ✅
+    - `Tinggi Tombol Aksi`: 44.0px (Target: >= 44px) ✅
+  - **Uji Papan Peringkat:**
+    - `Bebas Scrollbar Halaman`: `True` ✅
+    - `Tampilan Kartu di HP Tegak`: `True` (Display flex column) ✅
+    - `Tombol Admin Guru Muat Lebar`: `True` ✅
+    - `Input File Cadangan Cross-Platform`: `True` ✅
+- **3. Keputusan:**
+  - Seluruh layout layar tambahan HP dibuat murni lewat CSS media query yang terisolasi ketat.
+  - Sesuai instruksi: **BERHENTI DAN LAPOR**.
+
+---
+
+### FASE 5: QA DAN REGRESI (FINAL LAPORAN)
+- **Status:** SELESAI & TERVERIFIKASI PENUH ✅
+- **1. Apa yang Dikerjakan:**
+  - Menjalankan matriks pengujian otomatis menyeluruh melalui Chrome DevTools Protocol (CDP) dengan `Emulation.setDeviceMetricsOverride` dan `Emulation.setTouchEmulationEnabled`.
+  - Menguji 12 resolusi perangkat:
+    - 6 Resolusi HP Tegak: 360x640, 375x667, 390x844, 412x915, 430x932, 768x1024.
+    - 6 Resolusi HP Mendatar: 640x360, 667x375, 844x390, 915x412, 932x430, 1024x768.
+    - Ditambah resolusi TV Interaktif: 1920x1080 dan 1366x768.
+  - Memverifikasi setiap layar (Layar Awal, Setup Kelompok, Papan Kasus semua fase, Layar Hasil, Papan Peringkat, serta 4 Modal):
+    - `scrollWidth` dan `scrollHeight` tidak melebihi viewport (halaman utama 0 scrollbar).
+    - Tidak ada elemen yang keluar batas layar.
+    - Tidak ada tumpang tindih area utama.
+    - Ukuran tombol interaktif memenuhi standar sentuhan (HP >= 44px, TV >= 80px untuk tombol utama).
+    - Konsol peramban bersih (0 error console / exception).
+  - Menjalankan 3 sesi permainan berturut-turut di TV 1080p tanpa reload halaman untuk membuktikan stabilitas memori dan siklus state.
+  - Menjalankan sesi 12 kasus penuh dengan 2 dan 5 kelompok di mode HP tegak dan mendatar.
+  - Menambahkan bab dokumentasi *"Panduan Bermain di HP (Android & iPhone)"* ke dalam `README.md`.
+- **2. Ringkasan Hasil Pengujian:**
+  - **Regresi TV (1080p & 768p):** 0 piksel berbeda terhadap baseline awal (100% pixel-perfect preservation) ✅
+  - **Stabilitas 3 Sesi TV Tanpa Reload:** Berhasil menyelesaikan 3 sesi berturut-turut dengan skor dan lencana akurat ✅
+  - **Matriks Responsif 12 Resolusi:** 100% lolos verifikasi layout, bebas scroll luar, dan target sentuhan valid ✅
+  - **Simulasi 12 Kasus HP (2 dan 5 Tim):** Transisi lancar, podium 2 kolom untuk 2 tim, podium 3 kolom + 2 kartu sisa untuk 5 tim ✅
+  - **Console Error:** 0 error terdeteksi ✅
+- **3. Keputusan:**
+  - Aplikasi siap untuk dirilis dan dipush ke repositori GitHub.

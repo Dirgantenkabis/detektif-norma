@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "game.js": {
-    "mtime": 1792686118.8001986,
-    "seen": 1792686211.1560223,
-    "ast_hash": "bd9d638cd5b03775a434020e4fba900f",
+    "mtime": 1792690691.7560818,
+    "seen": 1792691759.0472145,
+    "ast_hash": "d1ac76748049d6fa6d37bd391adb93c5",
     "semantic_hash": ""
   },
   "run_inspect.py": {
@@ -84,21 +84,21 @@
     "semantic_hash": ""
   },
   "PROGRESS.md": {
-    "mtime": 1792686956.5974326,
-    "seen": 1792686968.399053,
-    "ast_hash": "0139950811657f09c3d41416fe9a6d1e",
+    "mtime": 1792691702.1854086,
+    "seen": 1792691759.0472445,
+    "ast_hash": "c8ad7519397a98d526df685c2a977528",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1792668923.232049,
-    "seen": 1792686211.1560516,
-    "ast_hash": "980efa8234ed8ca972fa1c898b6a2f92",
+    "mtime": 1792691651.5570123,
+    "seen": 1792691759.0472457,
+    "ast_hash": "9eb00497902c8310fd68bd130aa6479f",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1792686118.8007238,
-    "seen": 1792686211.1560538,
-    "ast_hash": "24348d6e64f0800e54ed7ccd47d5e669",
+    "mtime": 1792689463.2447271,
+    "seen": 1792691759.047247,
+    "ast_hash": "0d6174d5e7568aa68f9d25c684c4f848",
     "semantic_hash": ""
   },
   "baseline_tv/audit_results.json": {
@@ -131,90 +131,6 @@
     "ast_hash": "d48573d73f80966cc0695d468e0853cd",
     "semantic_hash": ""
   },
-  "baseline_tv/board_1080p.png": {
-    "mtime": 1792686101.482401,
-    "seen": 1792686211.1560557,
-    "ast_hash": "f8c7f220f8d886dfb2b74a554d32e9ce",
-    "semantic_hash": ""
-  },
-  "baseline_tv/board_768p.png": {
-    "mtime": 1792686104.0681586,
-    "seen": 1792686211.1560574,
-    "ast_hash": "0af9ae51eec5fdf232d0d3ae6b1462e7",
-    "semantic_hash": ""
-  },
-  "baseline_tv/diff_board.png": {
-    "mtime": 1792685779.1128628,
-    "seen": 1792686211.1560588,
-    "ast_hash": "e158a31c48eb270845c3a7a6015414c4",
-    "semantic_hash": ""
-  },
-  "baseline_tv/diff_result_1080p.png": {
-    "mtime": 1792686042.4542532,
-    "seen": 1792686211.1560605,
-    "ast_hash": "622f05d32cfd59996b96fad03dcd6ac5",
-    "semantic_hash": ""
-  },
-  "baseline_tv/result_1080p.png": {
-    "mtime": 1792686102.4144123,
-    "seen": 1792686211.1560621,
-    "ast_hash": "3565d7d9c289599cc0da7201d51250e5",
-    "semantic_hash": ""
-  },
-  "baseline_tv/result_768p.png": {
-    "mtime": 1792686104.732337,
-    "seen": 1792686211.1560636,
-    "ast_hash": "faada0b6d74c9797b2144485eaf89569",
-    "semantic_hash": ""
-  },
-  "baseline_tv/start_1080p.png": {
-    "mtime": 1792686100.8495696,
-    "seen": 1792686211.156065,
-    "ast_hash": "5d701249277e13ae226454c092b1ab3b",
-    "semantic_hash": ""
-  },
-  "baseline_tv/start_768p.png": {
-    "mtime": 1792686103.5312648,
-    "seen": 1792686211.1560667,
-    "ast_hash": "3b2d21ba6e4f14a6520a02ecc07cae56",
-    "semantic_hash": ""
-  },
-  "baseline_tv/test_board_1080p.png": {
-    "mtime": 1792686127.893814,
-    "seen": 1792686211.1560678,
-    "ast_hash": "f8c7f220f8d886dfb2b74a554d32e9ce",
-    "semantic_hash": ""
-  },
-  "baseline_tv/test_board_768p.png": {
-    "mtime": 1792686130.7635546,
-    "seen": 1792686211.1560693,
-    "ast_hash": "0af9ae51eec5fdf232d0d3ae6b1462e7",
-    "semantic_hash": ""
-  },
-  "baseline_tv/test_result_1080p.png": {
-    "mtime": 1792686128.9645274,
-    "seen": 1792686211.1560707,
-    "ast_hash": "3565d7d9c289599cc0da7201d51250e5",
-    "semantic_hash": ""
-  },
-  "baseline_tv/test_result_768p.png": {
-    "mtime": 1792686131.453814,
-    "seen": 1792686211.1560721,
-    "ast_hash": "faada0b6d74c9797b2144485eaf89569",
-    "semantic_hash": ""
-  },
-  "baseline_tv/test_start_1080p.png": {
-    "mtime": 1792686127.1366134,
-    "seen": 1792686211.1560738,
-    "ast_hash": "5d701249277e13ae226454c092b1ab3b",
-    "semantic_hash": ""
-  },
-  "baseline_tv/test_start_768p.png": {
-    "mtime": 1792686130.1602323,
-    "seen": 1792686211.1560755,
-    "ast_hash": "3b2d21ba6e4f14a6520a02ecc07cae56",
-    "semantic_hash": ""
-  },
   "docs/preview-board.png": {
     "mtime": 1792593520.4141684,
     "seen": 1792686211.1560771,
@@ -233,40 +149,22 @@
     "ast_hash": "74d181b1ce57f062af8c9c8a08163911",
     "semantic_hash": ""
   },
-  "baseline_tv/test_phase2_board_1080p.png": {
-    "mtime": 1792686892.7678573,
-    "seen": 1792686968.3990676,
-    "ast_hash": "f8c7f220f8d886dfb2b74a554d32e9ce",
+  "test_phase3_hp.py": {
+    "mtime": 1792688402.1636844,
+    "seen": 1792691759.0472305,
+    "ast_hash": "ba5df2e03363ee314a2b54db58f71eca",
     "semantic_hash": ""
   },
-  "baseline_tv/test_phase2_board_768p.png": {
-    "mtime": 1792686895.5978599,
-    "seen": 1792686968.3990686,
-    "ast_hash": "0af9ae51eec5fdf232d0d3ae6b1462e7",
+  "test_phase4_hp.py": {
+    "mtime": 1792690802.6732926,
+    "seen": 1792691759.047233,
+    "ast_hash": "c925a5f1fc5ae7ad1a13e1123772c691",
     "semantic_hash": ""
   },
-  "baseline_tv/test_phase2_result_1080p.png": {
-    "mtime": 1792686893.8434944,
-    "seen": 1792686968.3990698,
-    "ast_hash": "3565d7d9c289599cc0da7201d51250e5",
-    "semantic_hash": ""
-  },
-  "baseline_tv/test_phase2_result_768p.png": {
-    "mtime": 1792686896.2729023,
-    "seen": 1792686968.399071,
-    "ast_hash": "faada0b6d74c9797b2144485eaf89569",
-    "semantic_hash": ""
-  },
-  "baseline_tv/test_phase2_start_1080p.png": {
-    "mtime": 1792686892.0432312,
-    "seen": 1792686968.3990722,
-    "ast_hash": "5d701249277e13ae226454c092b1ab3b",
-    "semantic_hash": ""
-  },
-  "baseline_tv/test_phase2_start_768p.png": {
-    "mtime": 1792686894.9847913,
-    "seen": 1792686968.3990734,
-    "ast_hash": "3b2d21ba6e4f14a6520a02ecc07cae56",
+  "test_phase5_qa.py": {
+    "mtime": 1792690924.0899236,
+    "seen": 1792691759.0472357,
+    "ast_hash": "39d2cac641bbb7ee3dc18b97f950cc51",
     "semantic_hash": ""
   }
 }

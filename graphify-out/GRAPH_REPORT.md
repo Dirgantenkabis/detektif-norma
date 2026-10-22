@@ -1,17 +1,17 @@
-# Graph Report - Detektif Norma  (2026-10-22)
+# Graph Report - Detektif Norma  (2026-10-23)
 
 ## Corpus Check
-- 22 files · ~400,448 words
+- 25 files · ~89,238 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 3 file(s) not represented in the graph (top: (none) 2, .css 1)
 
 ## Summary
-- 206 nodes · 471 edges · 22 communities (20 shown, 2 thin omitted)
+- 230 nodes · 528 edges · 27 communities (22 shown, 5 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 11 edges (avg confidence: 0.89)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `61ab3b22`
+- Built from commit: `ed23df08`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -37,11 +37,16 @@
 - main
 - main
 - main
+- main
+- main
+- main
+- run_test
+- run_test
 
 ## God Nodes (most connected - your core abstractions)
 1. `playSound()` - 22 edges
-2. `TAHAP PERBAIKAN TAMPILAN & UX (ITERASI v1.2)` - 12 edges
-3. `Detektif Norma` - 12 edges
+2. `Detektif Norma` - 13 edges
+3. `TAHAP PERBAIKAN TAMPILAN & UX (ITERASI v1.2)` - 12 edges
 4. `initBoardEvents()` - 11 edges
 5. `startNewCaseSession()` - 10 edges
 6. `PROGRESS PENGERJAAN: DETEKTIF NORMA (v1.1)` - 10 edges
@@ -55,27 +60,23 @@
   PROGRESS.md → game.js
 - `FASE 5: SETUP KELOMPOK DAN MODAL PENGINGAT` --references--> `startNewCaseSession()`  [INFERRED]
   PROGRESS.md → game.js
-- `Contoh Skema Kasus:` --references--> `validasiDataNorma()`  [INFERRED]
-  README.md → data.js
 - `FASE 1: FONDASI DAN DATA` --references--> `validasiDataNorma()`  [INFERRED]
   PROGRESS.md → data.js
+- `Contoh Skema Kasus:` --references--> `validasiDataNorma()`  [INFERRED]
+  README.md → data.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (22 total, 2 thin omitted)
-
-### Community 0 - "asyncio"
-Cohesion: 0.26
-Nodes (6): debug_rects(), inspect(), get_free_port(), run_test(), get_free_port(), run_test()
+## Communities (27 total, 5 thin omitted)
 
 ### Community 1 - "PROGRESS PENGERJAAN: DETEKTIF NORMA (v1.1)"
-Cohesion: 0.12
-Nodes (14): KASUS_POOL, KELOMPOK_DEFAULT, NORMA_LIST, validasiDataNorma(), 📌 CATATAN PENTING & VERIFIKASI GURU, FASE 1: FONDASI DAN DATA, FASE 2: LAYAR AWAL, SETUP CEPAT, NAVIGASI, FASE 3: TATA LETAK PAPAN KASUS (+6 more)
+Cohesion: 0.11
+Nodes (17): KASUS_POOL, KELOMPOK_DEFAULT, NORMA_LIST, validasiDataNorma(), 📌 CATATAN PENTING & VERIFIKASI GURU, FASE 1: FONDASI DAN DATA, FASE 2: LAYAR AWAL, SETUP CEPAT, NAVIGASI, FASE 3: TATA LETAK PAPAN KASUS (+9 more)
 
 ### Community 2 - "Detektif Norma"
 Cohesion: 0.11
-Nodes (18): 1. Font Lokal, 2. Gambar Latar Layar Awal (Opsional), 3. Foto Profil Pembuat, 4. Mengisi Kontak Pembuat, Alur Setup Kelompok & Pengingat Peran, Aset Gambar dan Font (Opsional), Aturan Komposisi Data Kasus:, ⚡ Cara Kerja Papan Peringkat Kecepatan & Batasannya (+10 more)
+Nodes (18): 1. Font Lokal, 1. Pilihan Mode Tampilan, 2. Batasan Teknis Perangkat Bergerak, 2. Gambar Latar Layar Awal (Opsional), 3. Foto Profil Pembuat, 4. Mengisi Kontak Pembuat, Alur Setup Kelompok & Pengingat Peran, Aset Gambar dan Font (Opsional) (+10 more)
 
 ### Community 3 - "game.js"
 Cohesion: 0.23
@@ -98,8 +99,8 @@ Cohesion: 0.38
 Nodes (6): finishGameSession(), formatAvgTime(), handleFinishNow(), launchConfetti(), renderResultScreen(), stopTimer()
 
 ### Community 8 - "TAHAP PERBAIKAN TAMPILAN & UX (ITERASI v1.2)"
-Cohesion: 0.11
-Nodes (19): 1. FASE 1: TATA LETAK VERTIKAL 6 ZONA BEBAS OVERFLOW & BEBAS SCROLL, 2. FASE 2: STANDARISASI LENCANA (HANYA 2 LENCANA RESMI), 3. FASE 3: PERBAIKAN PODIUM, SKOR SERI, DAN TEKS WAKTU, 4. FASE 4: STRIP INFO & KASUS YANG PERLU DIBAHAS, 5. FASE 5: TOMBOL AKSI & HASIL PENGUJIAN MENYELURUH (CDP), FASE 1: FONDASI RESPONSIF HP, FASE 1: SET IKON SVG SATU GAYA (GANTI SEMUA EMOJI), FASE 2: PAPAN KASUS DI HP TEGAK (390×844, 375×667, 360×640, 430×932) (+11 more)
+Cohesion: 0.09
+Nodes (22): 1. FASE 1: TATA LETAK VERTIKAL 6 ZONA BEBAS OVERFLOW & BEBAS SCROLL, 2. FASE 2: STANDARISASI LENCANA (HANYA 2 LENCANA RESMI), 3. FASE 3: PERBAIKAN PODIUM, SKOR SERI, DAN TEKS WAKTU, 4. FASE 4: STRIP INFO & KASUS YANG PERLU DIBAHAS, 5. FASE 5: TOMBOL AKSI & HASIL PENGUJIAN MENYELURUH (CDP), FASE 1: FONDASI RESPONSIF HP, FASE 1: SET IKON SVG SATU GAYA (GANTI SEMUA EMOJI), FASE 2: PAPAN KASUS DI HP TEGAK (390×844, 375×667, 360×640, 430×932) (+14 more)
 
 ### Community 10 - "main"
 Cohesion: 0.60
@@ -145,17 +146,27 @@ Nodes (4): main(), call(), eval_js(), take_screenshot()
 Cohesion: 0.60
 Nodes (5): count_diff_pixels(), main(), call(), eval_js(), take_screenshot()
 
+### Community 22 - "main"
+Cohesion: 0.60
+Nodes (5): count_diff_pixels(), main(), call(), eval_js(), take_screenshot()
+
+### Community 23 - "main"
+Cohesion: 0.60
+Nodes (5): count_diff_pixels(), main(), call(), eval_js(), take_screenshot()
+
+### Community 24 - "main"
+Cohesion: 0.60
+Nodes (5): count_diff_pixels(), main(), call(), eval_js(), take_screenshot()
+
 ## Knowledge Gaps
-- **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `validasiDataNorma()` connect `PROGRESS PENGERJAAN: DETEKTIF NORMA (v1.1)` to `Detektif Norma`?**
-  _High betweenness centrality (0.107) - this node is a cross-community bridge._
 - **Should `PROGRESS PENGERJAAN: DETEKTIF NORMA (v1.1)` be split into smaller, more focused modules?**
-  _Cohesion score 0.125 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
 - **Should `Detektif Norma` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
 - **Should `TAHAP PERBAIKAN TAMPILAN & UX (ITERASI v1.2)` be split into smaller, more focused modules?**
-  _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected._

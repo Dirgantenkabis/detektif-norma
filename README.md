@@ -152,6 +152,40 @@ Setiap kali `index.html` dimuat di browser, fungsi `validasiDataNorma()` secara 
 
 ---
 
+## 📱 Panduan Bermain di HP (Android & iPhone)
+
+Game *Detektif Norma* telah dioptimalkan penuh untuk dimainkan di perangkat ponsel pintar (Android maupun iPhone/iPad), baik dalam posisi **tegak (portrait)** maupun **mendatar (landscape)**, tanpa merusak atau mengubah tampilan TV interaktif (selisih piksel = 0).
+
+### 1. Pilihan Mode Tampilan
+- **Mode HP Tegak (Portrait):**
+  - Praktis dimainkan dengan satu tangan.
+  - Header ringkas satu baris, strip kelompok bergeser horizontal (chip nama + skor).
+  - Teks berkas kasus dan 3 petunjuk tersusun rapi dari atas ke bawah.
+  - Empat stempel norma tersusun dalam grid 2×2 yang kokoh (tinggi minimal 56px, mudah disentuh jempol).
+  - Panel evaluasi guru tampil sebagai *bottom sheet* (maksimal 70% tinggi layar) tanpa menutupi kotak petunjuk penting.
+- **Mode HP Mendatar (Landscape):**
+  - Pengalaman visual luas menyerupai monitor detektif.
+  - Tiga petunjuk tersusun horizontal di samping berkas kasus.
+  - Rel Guru di sisi kanan layar (4 tombol aksi dengan ikon dan label ringkas).
+  - Empat stempel norma berderet dalam satu baris (4 kolom) di bawah.
+
+### 2. Batasan Teknis Perangkat Bergerak
+Guru dan siswa perlu memperhatikan beberapa batasan teknis bawaan sistem operasi ponsel:
+1. **Tombol Layar Penuh di iPhone (iOS Safari):**
+   - Kebijakan sistem operasi Apple (iOS) tidak menyediakan Fullscreen API standar untuk elemen web di iPhone. Tombol layar penuh disembunyikan secara cerdas di perangkat iOS.
+   - **Solusi Tampilan Penuh di iPhone:** Ketuk tombol *Bagikan (Share)* di Safari lalu pilih **"Tambahkan ke Layar Utama" (Add to Home Screen)**. Game akan terbuka layaknya aplikasi mandiri tanpa bilah URL browser.
+2. **Browser Dalam Aplikasi (In-App Webview):**
+   - Membuka tautan langsung dari aplikasi media sosial/pesan (WhatsApp, Instagram, Facebook, TikTok) dapat membatasi audio Web Audio API dan orientasi layar.
+   - Terdapat spanduk peringatan otomatis di layar awal. Disarankan menekan ikon titik tiga di pojok kanan atas lalu pilih **"Buka di Chrome"** atau **"Buka di Safari"**.
+3. **Sakelar Dering/Hening Fisik iPhone:**
+   - Di iPhone, Web Audio API tunduk pada sakelar hening fisik (*Mute Switch / Action Button*). Jika sakelar dalam posisi oranye/hening, efek suara tombol dan bel detektif tidak akan terdengar. Pastikan sakelar dering aktif dan volume media dinaikkan.
+4. **Penyimpanan Rekor Lokal Peramban:**
+   - Rekor kecepatan dan nama regu tersimpan di `localStorage` masing-masing browser ponsel. Data di HP siswa tidak akan mempengaruhi atau bercampur dengan data rekor di TV kelas utama.
+5. **Akses Cepat Melalui Pindai QR:**
+   - Di TV kelas, guru cukup membuka menu **Tentang** untuk menampilkan kode QR dan alamat web (`detektif-norma.pages.dev`). Siswa dapat langsung memindai kode tersebut menggunakan kamera HP untuk bergabung bermain.
+
+---
+
 ## ⚡ Cara Kerja Papan Peringkat Kecepatan & Batasannya
 Papan Peringkat Kecepatan dirancang untuk memotivasi diskusi kelompok yang sigap dan cermat.
 

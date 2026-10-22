@@ -894,7 +894,7 @@
                 <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-folder-open"></use></svg>
                 <span>Impor Cadangan</span>
               </label>
-              <input type="file" id="import-file-input" accept=".json" style="display: none;">
+              <input type="file" id="import-file-input" accept=".json,application/json,text/plain" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; opacity: 0;">
               <button id="btn-reset-leaderboard" class="btn btn-sm btn-danger btn-hold-reset">
                 <span class="hold-reset-bar" id="hold-reset-bar"></span>
                 <span class="hold-reset-text">
@@ -953,6 +953,21 @@
             <p><strong>Materi Pembelajaran:</strong> Bu Fina, SD Negeri Sindangbarang 02</p>
             <p><strong>Teknologi:</strong> Vanilla HTML, CSS, JavaScript (Bisa Berjalan 100% Offline)</p>
             <p class="sub-credit">Ilustrasi dibuat dengan bantuan AI.</p>
+          </div>
+
+          <!-- Blok Pindai QR untuk Main di HP -->
+          <div id="qr-mobile-block" class="qr-mobile-card">
+            <h4 class="qr-card-title">
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-star"></use></svg>
+              <span>Main di HP: Pindai QR</span>
+            </h4>
+            <div class="qr-card-content">
+              <img id="qr-code-img" src="assets/qr-detektif-norma.png" alt="Kode QR untuk memainkan Detektif Norma di HP" class="qr-image" onerror="const b = document.getElementById('qr-mobile-block'); if (b) b.style.display='none';">
+              <div class="qr-text-info">
+                <p class="qr-hint-text">Arahkan kamera HP ke kode QR ini untuk langsung bermain di ponselmu.</p>
+                <p class="qr-url-text"><strong>URL:</strong> <span id="qr-web-url">detektif-norma.pages.dev</span></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

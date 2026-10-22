@@ -741,6 +741,15 @@
         <input type="text" class="name-edit-input" id="custom-name-${idx}" value="${team.nama}" maxlength="20">
       `;
       container.appendChild(row);
+
+      const input = row.querySelector("input");
+      if (input) {
+        input.addEventListener("focus", () => {
+          setTimeout(() => {
+            input.scrollIntoView({ behavior: "smooth", block: "center" });
+          }, 300);
+        });
+      }
     });
   }
 
@@ -2098,6 +2107,8 @@
   function importLeaderboardJSON(file) {
     const reader = new FileReader();
     reader.onload = (e) => {
+      const importInput = document.getElementById("import-file-input");
+      if (importInput) importInput.value = "";
       try {
         const parsed = JSON.parse(e.target.result);
         if (Array.isArray(parsed)) {
@@ -2114,6 +2125,11 @@
       } catch (err) {
         alert("Gagal membaca file JSON.");
       }
+    };
+    reader.onerror = () => {
+      const importInput = document.getElementById("import-file-input");
+      if (importInput) importInput.value = "";
+      alert("Gagal membaca file JSON.");
     };
     reader.readAsText(file);
   }
@@ -2235,5 +2251,7 @@
   window.showScreen = showScreen;
   window.startNewCaseSession = startNewCaseSession;
   window.finishGameSession = finishGameSession;
+  window.openModal = openModal;
+  window.closeModal = closeModal;
 
 })();
