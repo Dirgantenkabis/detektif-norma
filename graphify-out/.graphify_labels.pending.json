@@ -2,11 +2,11 @@
   "0": "asyncio",
   "1": "PROGRESS PENGERJAAN: DETEKTIF NORMA (v1.1)",
   "2": "Detektif Norma",
-  "3": "game.js",
-  "4": "handleAnswerWrong",
-  "5": "startNewCaseSession",
-  "6": "playSound",
-  "7": "finishGameSession",
+  "3": "test_explanation",
+  "4": "game.js",
+  "5": "run_podium_test",
+  "6": "test_scrolled_eval",
+  "7": "test_start_setup",
   "8": "TAHAP PERBAIKAN TAMPILAN & UX (ITERASI v1.2)",
   "9": "audit_codebase.py",
   "10": "main",
@@ -25,5 +25,7 @@
   "23": "main",
   "24": "main",
   "25": "run_test",
-  "26": "run_test"
+  "26": "run_test",
+  "27": "test_correct",
+  "28": "run_test"
 }

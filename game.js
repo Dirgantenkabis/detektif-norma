@@ -943,6 +943,10 @@
       hotsGuide.style.display = "none";
     }
 
+    // Reset posisi scroll berkas kasus ke atas
+    const folder = document.getElementById("case-folder");
+    if (folder) folder.scrollTop = 0;
+
     // Update Progres & Indikator Kasus
     const progressText = document.getElementById("case-progress-text");
     if (progressText) {
@@ -1274,7 +1278,10 @@
 
     // Buka panel evaluasi alasan in-place setelah stempel selesai mendarat (250ms)
     setTimeout(() => {
-      if (reasonPanel) reasonPanel.style.display = "flex";
+      if (reasonPanel) {
+        reasonPanel.style.display = "flex";
+        reasonPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
     }, 250);
 
     renderTeamsSidebar(State.activeGroupIndex);
@@ -1467,7 +1474,10 @@
       reasonPanel.style.display = "flex";
     }
 
-    if (explanationBox) explanationBox.style.display = "block";
+    if (explanationBox) {
+      explanationBox.style.display = "block";
+      explanationBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
 
     if (expText) {
       const normaObj = NORMA_LIST.find(n => n.id === caseItem.jawabanId);

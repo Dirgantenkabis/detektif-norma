@@ -813,3 +813,89 @@ Seluruh 7 Fase Perbaikan Tampilan & UX Game **"Detektif Norma"** telah tuntas 10
   - **Console Error:** 0 error terdeteksi ✅
 - **3. Keputusan:**
   - Aplikasi siap untuk dirilis dan dipush ke repositori GitHub.
+
+
+---
+
+## 🛠️ PERBAIKAN UX LAYAR KASUS MOBILE LANDSCAPE (HP MENDATAR)
+- **Status:** SELESAI & TERVERIFIKASI 100% ✅
+- **1. Masalah Utama yang Ditemukan (Root Cause):**
+  - Pada media query `@media (orientation: landscape) and (max-height: 520px)`, class `#case-feedback-bar`, `#reason-panel`, dan `#explanation-box` sebelumnya dipaksa `display: flex !important;`. Hal ini menabrak inline style `display: none` dari JavaScript sehingga panel evaluasi ("Pesan evaluasi", "Penjelasan Norma", "Kasus Berikutnya") selalu muncul sejak kasus baru dimulai.
+  - Ditambah dengan `.folder-action-zone` yang di-set `position: fixed !important; bottom: 0; z-index: 50;`, panel evaluasi tersebut nangkring di dasar layar dan menutupi 100% dari 4 kartu stempel norma di bawah.
+  - Stempel norma di mobile landscape sebelumnya dipaksa menjadi `flex-direction: row` dan gagang kayu `.stamp-wood-handle` di-`display: none !important`, sehingga kehilangan bentuk stempel fisik aslinya.
+- **2. Perbaikan yang Dilakukan:**
+  - **4 Kartu Norma Fisik (Persis Versi Windows / Gambar 2):**
+    - Mengembalikan gagang kayu mini proporsional (`.stamp-wood-handle`, tinggi 10px dengan lekuk pegangan ridge).
+    - Mengatur ulang kartu stempel menjadi vertikal (`flex-direction: column !important`) dengan bantalan karet berwarna solid khas norma (Agama hijau, Kesusilaan merah, Kesopanan biru, Hukum cokelat emas).
+    - Memuat ikon SVG tajam, nama norma tebal, dan teks deskripsi ringkas 1 baris.
+    - Mengaktifkan 3 kondisi visual: Waiting (terang kalem), Active (terangkat -3px + border emas berdenyut saat giliran kelompok dipilih), dan Locked (redup + gembok saat salah tebak).
+  - **In-Flow Feedback & Alasan Guru:**
+    - Mengembalikan `.folder-action-zone` ke posisi in-flow di dalam berkas kasus (`position: static`), bukan fixed overlay.
+    - Menghormati logika JavaScript `style="display: none;"` sehingga panel umpan balik dan alasan guru HANYA muncul saat kasus terpecahkan / salah, dan tidak pernah menutupi 4 kartu stempel di bawah.
+    - Saat kasus berganti ke Kasus Berikutnya, panel evaluasi otomatis tertutup bersih dan 4 stempel norma langsung siap kembali.
+- **3. Hasil Pengujian CDP Edge Headless (iPhone 16 Landscape 852×393):**
+  - `allStampsVisible`: `True` (keempat stempel Agama, Kesusilaan, Kesopanan, Hukum tampil utuh) ✅
+  - `allHandlesVisible`: `True` (gagang kayu mini 10px tampil di atas tiap stempel) ✅
+  - `feedbackBarDisplay` saat awal kasus: `none` ✅
+  - `reasonPanelDisplay` saat awal kasus: `none` ✅
+  - Seleksi giliran tim: Keempat stempel terangkat aktif dengan border emas ✅
+  - Evaluasi kasus benar: Cap "TERPECAHKAN" muncul, umpan balik & alasan guru tampil rapi di dalam berkas, dan tombol "Kasus Berikutnya" melanjutkan ke kasus berikutnya dengan stempel kembali siap ✅
+
+
+---
+
+## 🎨 PENYEMPURNAAN VISUAL & ANIMASI TAKTIL MOBILE LANDSCAPE (ANTI-GEPENG)
+- **Status:** SELESAI & TERVERIFIKASI PENUH ✅
+- **1. Masalah Tampilan Gepeng & Ketiadaan Animasi:**
+  - Sebelumnya, 4 stempel norma di mobile landscape terlalu tipis/ceper (tinggi hanya 58px vs lebar 205px = rasio 3.5:1), sehingga tampak seperti permen gepeng dan kehilangan bobot stempel kayu fisik.
+  - Transform statis pada stempel "TERPECAHKAN" memblokir animasi hentakan pegas `stampSlamIn`.
+  - Animasi aktif melayang (`stampActiveGently`), animasi tekan fisik (`.stamping-down`), goyang berkas salah (`shake-soft`), dan kilau benar (`correct-glow`) tertahan oleh aturan CSS statis.
+- **2. Peningkatan Visual & Animasi:**
+  - **Tinggi Stempel Dinaikkan ke 76–80px (Anti-Gepeng):**
+    - Gagang kayu dibuat tebal dan nyata (15px) dengan lekukan pegangan 3D beraksen specular highlight.
+    - Bantalan karet tebal (61px) dengan outline 2.5px dan bayangan bawah fisik 4px (`box-shadow: 0 4px 0 var(--c-outline)`).
+    - Ikon SVG diperbesar ke 22px, nama norma lebih besar dan tegas (12px, font-weight 900) dengan drop shadow, teks deskripsi norma terbaca jelas (8.5px).
+  - **Animasi Penuh Seperti di Laptop:**
+    - **Floating Active Bouncing:** Saat tim dipilih, ke-4 stempel terangkat naik dan mengambang berdenyut (`@keyframes stampActiveMobile`) dengan border emas bercahaya.
+    - **Physical Slam Press:** Saat ditekan, stempel turun 3px (`transform: translateY(3px) scale(0.97)`) dengan kompresi bayangan 1px.
+    - **Slam-In Cap "TERPECAHKAN":** Mengembalikan animasi hentakan pegas skala besar ke kecil (`@keyframes stampSlamInMobile`) dengan riak tinta memudar (`inkRingFadeMobile`).
+    - **Folder Reaction:** Getar goyang berkas saat salah (`softShakeMobile`), kilau emas saat benar (`correctGlowMobile`), dan getaran berkas saat stempel mendarat (`folderBounceMobile`).
+    - **Klip Logam Berkas:** Klip arsip perak mini (`.folder-metal-clip`) diaktifkan di sudut kiri atas berkas kasus.
+
+---
+
+## 🏆 FASE 8: AUDIT MENYELURUH & RESOLUSI CACAT MOBILE LANDSCAPE (100% BEBAS CACAT)
+- **Status:** SELESAI, DIVERIFIKASI DENGAN SCREENSHOT CDP OTOMATIS (100% BEBAS CACAT) ✅
+- **1. Analisis 5 Cacat dari Gambar Pengguna:**
+  1. *Cacat 1-4 (Layar Kasus Mobile Landscape - iPhone 16 852×393):*
+     - Layout desktop 3-kolom bocor ke mobile landscape akibat hilangnya blok `@media (orientation: landscape) and (max-height: 520px)`, sehingga sidebar tim 240px di kiri dan panel guru 220px di kanan menjepit folder kasus menjadi hanya ~390px.
+     - Teks kasus terhimpit, cap "TERPECAHKAN" terpotong, petunjuk gepeng, dan tombol evaluasi alasan guru ("Alasan Masuk Akal") terbelah secara vertikal & terpotong.
+  2. *Cacat 5 (Layar Hasil / Podium Pemenang Mobile Landscape):*
+     - Balok podium tertekan tanpa diferensiasi ketinggian bertingkat yang proporsional.
+     - Nama kelompok ("dar", "ab") terpotong/tersembunyi di balik kolom podium.
+     - Tombol aksi di bagian bawah terhimpit keluar batas viewport.
+- **2. Solusi Rekayasa Layout & Tampilan yang Diterapkan:**
+  - **Grid 4-Baris Khusus Landscape `#screen-board`:**
+    - Baris 1: Header ringkas (36px).
+    - Baris 2: Strip tab kelompok horizontal (32px), membebaskan 100% lebar layar untuk berkas kasus.
+    - Baris 3: Kolom folder berkas kasus (~750px) berdampingan dengan panel guru kompak (80px).
+    - Baris 4: 4 stempel norma kayu fisik 3D kokoh (74px) dengan gagang kayu, outline tebal, dan deskripsi terbaca jelas.
+  - **Auto Smooth-Scroll Evaluasi Guru & Penjelasan:**
+    - Tombol evaluasi alasan guru (`#btn-reason-sensible` & `#btn-reason-pass`) ditata dalam grid 2-kolom berdampingan dengan lebar 350px per tombol, min-height 40px, dan kontras tinggi.
+    - Fungsi `evaluateAnswer()` dan `showCaseExplanation()` kini otomatis melakukan `scrollIntoView({ behavior: 'smooth', block: 'nearest' })` saat dibuka, sehingga guru langsung melihat tombol evaluasi tanpa perlu repot menggulir manual.
+    - Transisi ke kasus baru mereset `folder.scrollTop = 0` secara instan.
+  - **Podium Bertingkat 3D `#screen-result`:**
+    - Menghadirkan diferensiasi ketinggian 3 balok yang jelas (Emas 58px, Perak 44px, Perunggu 32px) dengan nama kelompok 100% utuh tanpa terpotong.
+    - Strip tim sisa (peringkat 4 & 5) tampil rapi dan simetris di bawah podium.
+    - Seluruh tombol footer ("Main Lagi", "Papan Peringkat", "Menu Utama") tertampung sempurna di dalam batas 393px tinggi layar tanpa scrollbar luar.
+- **3. Verifikasi Screenshot Headless Edge (CDP 852×393):**
+  - `screenshot_landscape_case1.png`: Tampilan awal kasus bersih, folder luas, 3 petunjuk rapi, 4 stempel norma utuh 100%.
+  - `screenshot_landscape_case1_active.png`: Seleksi giliran tim Elang aktif melayang dengan efek border emas bercahaya.
+  - `screenshot_landscape_correct_solved.png`: Auto-scroll memperlihatkan prompt HOTS dan 2 tombol evaluasi lisan guru tanpa clipping.
+  - `screenshot_landscape_explanation.png`: Penjelasan norma dan tombol emas "Kasus Berikutnya ->" tertata sempurna.
+  - `screenshot_landscape_case2.png`: Transisi ke Kasus 2 mereset posisi scroll kembali ke atas dengan data kasus baru.
+  - `screenshot_landscape_podium.png`: Podium bertingkat emas-perak-perunggu proporsional, nama tim utuh, tombol aksi bawah aman.
+- **4. Audit Kepatuhan:**
+  - 100% Emoji-Free: Memakai SVG sprite murni (`#icon-...`).
+  - 100% Offline: 0 dependensi CDN atau URL eksternal.
+  - Knowledge graph disinkronkan via `graphify update .`.
