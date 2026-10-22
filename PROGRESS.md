@@ -564,3 +564,102 @@ Seluruh 7 Fase Perbaikan Tampilan & UX Game **"Detektif Norma"** telah tuntas 10
     - Pembatasan kasus gagal: Tepat dibatasi maks. 3 kartu pil
     - Bounding box badge skor kelompok 4 & 5: 100% berada di dalam kartu (`scoreInside: true`)
 - **Hasil:** 100% Lolos Uji Otomasi CDP tanpa error.
+
+---
+
+## 📱 TAHAP RESPONSIF MOBILE (HP ANDROID & IPHONE) - v1.3
+
+### FASE 1: FONDASI RESPONSIF HP
+- **Status:** SELESAI & TERVERIFIKASI PENUH ✅
+- **1. Hasil Audit Sebelum Perubahan (375×667, 390×844, 667×375, 844×390):**
+  - *Letterboxing & Squeeze:* Akibat rasio tetap 16:9 dengan `transform: scale()`, game pada layar HP tegak menyusut drastis menjadi pita kecil di tengah layar (hanya 375×211 pada iPhone SE portrait; 390×219 pada iPhone 13/14 portrait).
+  - *Target Sentuh < 44px:*
+    - Tombol Menu di header berukuran 87×38px (< 44px tinggi).
+    - Tombol Suara dan Layar Penuh berukuran 40×40px / 42×42px (< 44px).
+    - Pada orientasi tegak, tombol stempel norma terhimpit parah hingga lebarnya hanya 8px (tinggi 80–94px), mustahil disentuh jari anak.
+  - *Ukuran Teks < 14px:*
+    - Ditemukan 31 hingga 45 elemen teks berukuran di bawah 14px (misal timer 12px, label sub-kelompok 11px, Menu 13px, nama kelompok 13px) karena menggunakan kalkulasi `clamp(..vh..)`.
+  - *Tumpang Tindih / Collision (Kotak Petunjuk vs Lembar Alasan HOTS):*
+    - Pada hp-tegak, ruang vertikal terbatas menyebabkan kotak petunjuk dan lembar alasan saling menimpa jika dibuka bersamaan. Dicatat sebagai target perbaikan tata letak di Fase 2 & 3.
+- **2. Apa yang Diubah:**
+  - `index.html`:
+    - Menambahkan `viewport-fit=cover` pada `<meta name="viewport">` untuk menangani notch/pulau kamera iPhone & Android.
+    - Menambahkan spanduk notifikasi ringan bebas emoji: `#inapp-browser-banner` (notifikasi pembuka browser eksternal) dan `#rotate-phone-banner` (saran memutar layar HP yang dapat ditutup).
+    - Menambahkan panduan praktis pada modal Cara Main: *"Satu HP bisa dipakai bergantian: pemegang HP berperan sebagai guru. Di iPhone, matikan mode senyap agar suara terdengar."*
+  - `style.css`:
+    - Menambahkan `overscroll-behavior: none; -webkit-touch-callout: none;` pada `html, body` guna mencegah gesture pull-to-refresh dan callout pop-up default iOS.
+    - Membuat variabel `:root` baru (`--btn-h-pri`, `--btn-h-sec`, `--btn-h-act`, `--btn-h-dan`, `--btn-h-sm`, `--btn-sz-icon`, `--board-margin`, `--board-border-sz`) sehingga ukuran tombol dan papan diatur dinamis lewat CSS variable tanpa mengganggu desktop.
+    - Menambahkan media query murni responsif:
+      - `@media (orientation: portrait) and (max-width: 820px)` (`hp-tegak`): `#app-viewport` beralih ke `position: fixed; inset: 0; width: 100%; height: 100dvh; transform: none; padding: env(safe-area-inset-*);`. Variabel font teks kasus diatur min 20px, tombol min 48px/52px.
+      - `@media (orientation: landscape) and (max-height: 520px)` (`hp-mendatar`): `#app-viewport` beralih ke `position: fixed; inset: 0; width: 100%; height: 100dvh; transform: none; padding: env(safe-area-inset-*);`. Variabel font teks kasus diatur min 18px, tombol min 44px/48px.
+      - Mode TV (1920×1080 dan 1366×768) 100% tidak terpengaruh oleh media query ini.
+  - `game.js`:
+    - Logika Layar Penuh: menyembunyikan kedua tombol fullscreen jika browser tidak mendukung API Fullscreen (`!(documentElement.requestFullscreen || webkitRequestFullscreen)`).
+    - Kunci Orientasi HP: jika pengguna berada di perangkat layar sentuh mobile (`matchMedia("(pointer: coarse) and (max-width: 900px)")`), setelah memasuki fullscreen sistem memanggil `screen.orientation.lock("landscape")` (dalam blok try/catch yang aman); kuncinya otomatis dilepas saat keluar dari fullscreen.
+    - Browser Dalam Aplikasi: mendeteksi WebView Instagram dan Facebook (`/Instagram|FBAN|FBAV/i`), menampilkan bilah anjuran buka di browser asli.
+    - Saran Rotasi: menampilkan bilah anjuran putar HP hanya pada `hp-tegak`, dapat ditutup pengguna dan tidak memblokir permainan.
+- **3. Apa yang Diuji & Hasil Verifikasi Otomasi (`test_phase1_hp.py`):**
+  - **Uji Selisih Piksel TV / Desktop (Target: 0 Piksel):**
+    - `Start Screen (1080p)`: 0 piksel berbeda ✅
+    - `Board Screen (1080p)`: 0 piksel berbeda ✅
+    - `Result Screen (1080p)`: 0 piksel berbeda ✅
+    - `Start Screen (768p)`: 0 piksel berbeda ✅
+    - `Board Screen (768p)`: 0 piksel berbeda ✅
+    - `Result Screen (768p)`: 0 piksel berbeda ✅
+    - **Hasil: 100% IDENTIK (Selisih piksel = 0)**
+  - **Uji Scroll Halaman pada 4 Ukuran HP (Target: 0 Scroll):**
+    - `iPhone SE Portrait (375×667)`: Page Scroll = False (Start: False, Board: False, Result: False) ✅
+    - `iPhone 13/14 Portrait (390×844)`: Page Scroll = False (Start: False, Board: False, Result: False) ✅
+    - `iPhone SE Landscape (667×375)`: Page Scroll = False (Start: False, Board: False, Result: False) ✅
+    - `iPhone 13/14 Landscape (844×390)`: Page Scroll = False (Start: False, Board: False, Result: False) ✅
+  - **Uji Rotasi & Resize HP:**
+    - Perubahan ukuran dan rotasi layar dari tegak (390×844) ke mendatar (844×390) tidak mereset state permainan:
+      - `currentCaseIndex`: tetap Case 0
+      - `timerRunning`: tetap `True`
+      - `timerSeconds`: terus berlanjut (2 detik ➔ 3 detik) tanpa reset
+- **4. Keputusan:**
+  - Sesuai aturan kerja iterasi, Fase 1 dituntaskan dan diverifikasi penuh terlebih dahulu sebelum menyentuh penataan tata letak spesifik grid/flex di Fase 2 (HP-Tegak) dan Fase 3 (HP-Mendatar).
+  - Sesuai instruksi: **BERHENTI DAN LAPOR**.
+
+---
+
+### FASE 2: PAPAN KASUS DI HP TEGAK (390×844, 375×667, 360×640, 430×932)
+- **Status:** SELESAI & TERVERIFIKASI PENUH ✅
+- **1. Apa yang Diubah:**
+  - `style.css` (Murni di dalam `@media (orientation: portrait) and (max-width: 820px)`):
+    - **Grid Template Areas 5 Zona:** `#screen-board` disusun ulang menggunakan `grid-template-areas: "header" "teams" "case" "teacher" "stamps"` dengan `.board-main-area` dan `.board-center-case` disetel ke `display: contents` sehingga tidak merusak hierarki DOM.
+    - **Header Satu Baris:** `#board-header` (Menu, progres kasus, penanda Kasus Tantangan, timer, tombol suara, tombol fullscreen) berada dalam 1 baris tanpa wrapping atau elemen bertumpuk. Tombol memiliki ukuran sentuh >= 44px.
+    - **Strip Kelompok Horizontal:** `.teams-sidebar` diubah menjadi deretan chip horizontal nama + skor, tinggi 48px, dengan scroll horizontal otomatis jika bermain 5 kelompok. Kelompok yang aktif menjawab disorot terang (`.active-turn`).
+    - **Berkas Kasus (Flex 1):** `#case-folder` menempati sisa ruang vertikal (`flex: 1 1 0`), teks kasus berukuran 20px (memenuhi syarat min 20px), dan 3 petunjuk bertahap ditumpuk secara vertikal dan ringkas.
+    - **Bilah Guru:** 4 tombol berderet (`#btn-unlock-clue`, `#btn-pause-game`, `#btn-cancel-turn`, `#btn-finish-now`), ikon di atas label, tinggi 48px, satu ketukan per aksi. Urutan tombol diatur via CSS `order`: (1) Buka Petunjuk, (2) Jeda, (3) Batalkan, (4) Selesai. Tombol "Selesai Sekarang" tetap berwarna beda (`.btn-danger`).
+    - **Empat Stempel Norma:** Ditata dalam grid 2×2, tinggi 56px per stempel, menampilkan ikon SVG + nama norma tegas + keterangan kecil, gagang kayu disembunyikan agar seluruh area stempel responsif sentuhan.
+    - **Bottom Sheet:** Panel evaluasi alasan + penjelasan + "Alasan masuk akal" (tahan 1 detik) + "Lanjut/Kasus Berikutnya" menjadi bottom sheet (`position: fixed; bottom: 0; max-height: 62%`, scroll internal, tombol aksi menempel di bawah sheet). Teks kasus tetap terlihat di atas sheet. Banner feedback menyatu di kepala sheet. Stempel TERPECAHKAN tampil di sudut kanan atas berkas dan tidak tertutup sheet.
+- **2. Apa yang Diuji & Hasil Verifikasi Otomasi (`test_phase2_hp.py`):**
+  - **Uji Selisih Piksel TV / Desktop (Target: 0 Piksel):**
+    - `Start Screen (1080p)`: 0 piksel berbeda ✅
+    - `Board Screen (1080p)`: 0 piksel berbeda ✅
+    - `Result Screen (1080p)`: 0 piksel berbeda ✅
+    - `Start Screen (768p)`: 0 piksel berbeda ✅
+    - `Board Screen (768p)`: 0 piksel berbeda ✅
+    - `Result Screen (768p)`: 0 piksel berbeda ✅
+    - **Hasil: 100% IDENTIK DENGAN BASELINE ASLI (Selisih piksel = 0)**
+  - **Uji 4 Ukuran HP Tegak (390×844, 375×667, 360×640, 430×932) untuk 2 dan 5 Kelompok (termasuk kasus HOTS terpanjang):**
+    - `Page Scroll`: `False` (0 scroll) pada seluruh ukuran dan jumlah kelompok ✅
+    - `Teks Kasus Font`: 20px (Target: >= 20px) ✅
+    - `Tinggi Tombol Bilah Guru`: 48.0px (Target: >= 48px) ✅
+    - `Tinggi Stempel Norma`: 56.0px (Target: >= 56px) ✅
+    - `Tinggi Chip Kelompok`: 48.0px (Target: >= 48px) ✅
+    - `Deteksi Tumpang Tindih (Header, Strip, Berkas, Bilah Guru, Stempel)`: 0 overlap (`False`) ✅
+    - `Scroll Horizontal Chip 5 Kelompok`: `True` (scroll-x lancar) ✅
+    - `Bottom Sheet Height`: 32.5% – 41.7% (Target: <= 62%) ✅
+    - `Teks Kasus di Atas Sheet`: `True` (terbaca utuh tanpa tertutup) ✅
+    - `Stempel TERPECAHKAN Tidak Tertutup Sheet`: `True` (tampil di sudut atas berkas) ✅
+    - `Banner Feedback di Kepala Sheet`: `True` ✅
+    - `Tinggi Tombol Alasan Masuk Akal & Lanjut`: 48.0px (Target: >= 48px) ✅
+    - `Tinggi Tombol Kasus Berikutnya`: 48.0px (Target: >= 48px, menempel di bawah sheet) ✅
+  - **Uji Simulasi Penuh 12 Kasus di HP Tegak:**
+    - Menyelesaikan 12 kasus berturut-turut dari kasus 1 hingga 12 dengan rotasi giliran 5 kelompok.
+    - Pindah ke layar hasil (`screen-result`) dengan lancar tanpa error ✅
+- **3. Keputusan:**
+  - Seluruh layout HP Tegak diimplementasikan murni lewat CSS tanpa mengubah struktur DOM atau ID elemen `index.html`.
+  - Sesuai instruksi: **BERHENTI DAN LAPOR**.

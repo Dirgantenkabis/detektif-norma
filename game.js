@@ -72,6 +72,7 @@
     initBoardEvents();
     initResultEvents();
     initLeaderboardEvents();
+    initMobileNotices();
     checkPreviousSessionSetup();
 
     // Pastikan validasi data dieksekusi
@@ -459,21 +460,58 @@
   // ==========================================================================
   function initNavigationEvents() {
     // Layar Penuh Toggle
+    const fsBtnStart = document.getElementById("btn-fullscreen-toggle");
+    const fsBtnBoard = document.getElementById("btn-board-fullscreen");
+    const hasFsSupport = !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
+
+    if (!hasFsSupport) {
+      if (fsBtnStart) fsBtnStart.style.display = "none";
+      if (fsBtnBoard) fsBtnBoard.style.display = "none";
+    }
+
     const handleFullscreen = () => {
       playSound("click");
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
+      const isCoarseMobile = window.matchMedia("(pointer: coarse) and (max-width: 900px)").matches;
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        const req = document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen;
+        if (req) {
+          req.call(document.documentElement).then(() => {
+            if (isCoarseMobile && screen.orientation && screen.orientation.lock) {
+              try {
+                screen.orientation.lock("landscape").catch(() => {});
+              } catch (e) {}
+            }
+          }).catch(() => {});
+        }
       } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen().catch(() => {});
+        const exit = document.exitFullscreen || document.webkitExitFullscreen;
+        if (exit) {
+          exit.call(document).then(() => {
+            if (isCoarseMobile && screen.orientation && screen.orientation.unlock) {
+              try {
+                screen.orientation.unlock();
+              } catch (e) {}
+            }
+          }).catch(() => {});
         }
       }
     };
 
-    const fsBtnStart = document.getElementById("btn-fullscreen-toggle");
-    const fsBtnBoard = document.getElementById("btn-board-fullscreen");
-    if (fsBtnStart) fsBtnStart.addEventListener("click", handleFullscreen);
-    if (fsBtnBoard) fsBtnBoard.addEventListener("click", handleFullscreen);
+    if (hasFsSupport) {
+      if (fsBtnStart) fsBtnStart.addEventListener("click", handleFullscreen);
+      if (fsBtnBoard) fsBtnBoard.addEventListener("click", handleFullscreen);
+    }
+
+    // Listener unlock saat keluar fullscreen lewat tombol/gesture bawaan HP
+    const onFsChange = () => {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        if (window.matchMedia("(pointer: coarse) and (max-width: 900px)").matches && screen.orientation && screen.orientation.unlock) {
+          try { screen.orientation.unlock(); } catch (e) {}
+        }
+      }
+    };
+    document.addEventListener("fullscreenchange", onFsChange);
+    document.addEventListener("webkitfullscreenchange", onFsChange);
 
     // Suara Toggle
     const soundBtnStart = document.getElementById("btn-sound-toggle");
@@ -518,6 +556,48 @@
 
     const btnBackLead = document.getElementById("btn-back-from-leaderboard");
     if (btnBackLead) btnBackLead.addEventListener("click", () => { playSound("click"); navigateToMenu(); });
+  }
+
+  function initMobileNotices() {
+    // 1. Bilah Info Browser Dalam Aplikasi (Instagram / FB WebView)
+    const ua = navigator.userAgent || "";
+    const isInApp = /Instagram|FBAN|FBAV/i.test(ua);
+    const inAppBanner = document.getElementById("inapp-browser-banner");
+    const btnCloseInApp = document.getElementById("btn-close-inapp-banner");
+    if (inAppBanner && isInApp) {
+      inAppBanner.style.display = "flex";
+    }
+    if (btnCloseInApp && inAppBanner) {
+      btnCloseInApp.addEventListener("click", () => {
+        inAppBanner.style.display = "none";
+      });
+    }
+
+    // 2. Saran Memutar HP (hanya aktif di hp-tegak, tidak memblokir permainan)
+    const rotateBanner = document.getElementById("rotate-phone-banner");
+    const btnCloseRotate = document.getElementById("btn-close-rotate-banner");
+    let isRotateDismissed = false;
+
+    const checkOrientationNotice = () => {
+      if (!rotateBanner || isRotateDismissed) return;
+      const isPortraitMobile = window.matchMedia("(orientation: portrait) and (max-width: 820px)").matches;
+      if (isPortraitMobile) {
+        rotateBanner.style.display = "flex";
+      } else {
+        rotateBanner.style.display = "none";
+      }
+    };
+
+    if (btnCloseRotate && rotateBanner) {
+      btnCloseRotate.addEventListener("click", () => {
+        isRotateDismissed = true;
+        rotateBanner.style.display = "none";
+      });
+    }
+
+    window.addEventListener("resize", checkOrientationNotice);
+    window.addEventListener("orientationchange", checkOrientationNotice);
+    checkOrientationNotice();
   }
 
   // ==========================================================================

@@ -1,0 +1,418 @@
+{
+  "iPhone SE Portrait": {
+    "smallTouchTargetsCount": 7,
+    "smallTouchTargetsSample": [
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-menu",
+        "text": "Menu",
+        "width": 87,
+        "height": 38,
+        "top": 233,
+        "left": 14
+      },
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-sound",
+        "text": "",
+        "width": 40,
+        "height": 40,
+        "top": 232,
+        "left": 388
+      },
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-fullscreen",
+        "text": "",
+        "width": 40,
+        "height": 40,
+        "top": 232,
+        "left": 438
+      },
+      {
+        "tag": "BUTTON",
+        "id": "norma-stamp stamp-agama disabled",
+        "text": "AGAMA\n                  a",
+        "width": 8,
+        "height": 80,
+        "top": 518,
+        "left": 228
+      },
+      {
+        "tag": "BUTTON",
+        "id": "norma-stamp stamp-kesusilaan disabled",
+        "text": "KESUSILAAN\n              ",
+        "width": 8,
+        "height": 80,
+        "top": 518,
+        "left": 244
+      },
+      {
+        "tag": "BUTTON",
+        "id": "norma-stamp stamp-kesopanan disabled",
+        "text": "KESOPANAN\n               ",
+        "width": 8,
+        "height": 80,
+        "top": 518,
+        "left": 260
+      },
+      {
+        "tag": "BUTTON",
+        "id": "norma-stamp stamp-hukum disabled",
+        "text": "HUKUM\n                  a",
+        "width": 8,
+        "height": 80,
+        "top": 518,
+        "left": 276
+      }
+    ],
+    "smallFontsCount": 41,
+    "smallFontsSample": [
+      {
+        "text": "Menu",
+        "fontSize": 13,
+        "id": ""
+      },
+      {
+        "text": "Kasus 1 dari 12",
+        "fontSize": 13,
+        "id": "case-progress-text"
+      },
+      {
+        "text": "Kasus Tantangan",
+        "fontSize": 12,
+        "id": ""
+      },
+      {
+        "text": "00:00",
+        "fontSize": 12,
+        "id": "timer-display"
+      },
+      {
+        "text": "Pilih giliran:",
+        "fontSize": 11,
+        "id": "sidebar-sub"
+      },
+      {
+        "text": "Tim Elang\n          \n         ",
+        "fontSize": 13.3333,
+        "id": "team-card-btn"
+      },
+      {
+        "text": "Tim Elang\n          \n         ",
+        "fontSize": 13.3333,
+        "id": "team-card-top"
+      },
+      {
+        "text": "Tim Elang",
+        "fontSize": 13,
+        "id": "team-name-text"
+      }
+    ],
+    "cluesBottom": 997.515625,
+    "hotsTop": 0,
+    "collisionDetected": false,
+    "viewportSqueeze": {
+      "windowWidth": 375,
+      "windowHeight": 667,
+      "appWidth": 375,
+      "appHeight": 211,
+      "isLetterboxed": true,
+      "bodyScrollHeight": 667
+    }
+  },
+  "iPhone 13/14 Portrait": {
+    "smallTouchTargetsCount": 7,
+    "smallTouchTargetsSample": [
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-menu",
+        "text": "Menu",
+        "width": 98,
+        "height": 41,
+        "top": 322,
+        "left": 14
+      },
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-sound",
+        "text": "",
+        "width": 42,
+        "height": 42,
+        "top": 321,
+        "left": 424
+      },
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-fullscreen",
+        "text": "",
+        "width": 42,
+        "height": 42,
+        "top": 321,
+        "left": 476
+      },
+      {
+        "tag": "BUTTON",
+        "id": "norma-stamp stamp-agama disabled",
+        "text": "AGAMA\n                  a",
+        "width": 8,
+        "height": 94,
+        "top": 667,
+        "left": 228
+      },
+      {
+        "tag": "BUTTON",
+        "id": "norma-stamp stamp-kesusilaan disabled",
+        "text": "KESUSILAAN\n              ",
+        "width": 8,
+        "height": 94,
+        "top": 667,
+        "left": 244
+      },
+      {
+        "tag": "BUTTON",
+        "id": "norma-stamp stamp-kesopanan disabled",
+        "text": "KESOPANAN\n               ",
+        "width": 8,
+        "height": 94,
+        "top": 667,
+        "left": 260
+      },
+      {
+        "tag": "BUTTON",
+        "id": "norma-stamp stamp-hukum disabled",
+        "text": "HUKUM\n                  a",
+        "width": 8,
+        "height": 94,
+        "top": 667,
+        "left": 276
+      }
+    ],
+    "smallFontsCount": 31,
+    "smallFontsSample": [
+      {
+        "text": "Kasus Tantangan",
+        "fontSize": 13.504,
+        "id": ""
+      },
+      {
+        "text": "00:00",
+        "fontSize": 13.504,
+        "id": "timer-display"
+      },
+      {
+        "text": "Pilih giliran:",
+        "fontSize": 12.66,
+        "id": "sidebar-sub"
+      },
+      {
+        "text": "Tim Elang\n          \n         ",
+        "fontSize": 13.3333,
+        "id": "team-card-btn"
+      },
+      {
+        "text": "Tim Elang\n          \n         ",
+        "fontSize": 13.3333,
+        "id": "team-card-top"
+      },
+      {
+        "text": "0 Poin",
+        "fontSize": 12.66,
+        "id": "team-score-badge "
+      },
+      {
+        "text": "Belum ada rekor (0 benar)",
+        "fontSize": 11,
+        "id": "team-time-stat"
+      },
+      {
+        "text": "Tim Harimau\n          \n       ",
+        "fontSize": 13.3333,
+        "id": "team-card-btn"
+      }
+    ],
+    "cluesBottom": 1260.921875,
+    "hotsTop": 0,
+    "collisionDetected": false,
+    "viewportSqueeze": {
+      "windowWidth": 390,
+      "windowHeight": 844,
+      "appWidth": 390,
+      "appHeight": 219,
+      "isLetterboxed": true,
+      "bodyScrollHeight": 844
+    }
+  },
+  "iPhone SE Landscape": {
+    "smallTouchTargetsCount": 3,
+    "smallTouchTargetsSample": [
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-menu",
+        "text": "Menu",
+        "width": 87,
+        "height": 38,
+        "top": 5,
+        "left": 14
+      },
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-sound",
+        "text": "",
+        "width": 40,
+        "height": 40,
+        "top": 4,
+        "left": 563
+      },
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-fullscreen",
+        "text": "",
+        "width": 40,
+        "height": 40,
+        "top": 4,
+        "left": 613
+      }
+    ],
+    "smallFontsCount": 45,
+    "smallFontsSample": [
+      {
+        "text": "Menu",
+        "fontSize": 13,
+        "id": ""
+      },
+      {
+        "text": "Kasus 1 dari 12",
+        "fontSize": 13,
+        "id": "case-progress-text"
+      },
+      {
+        "text": "Kasus Tantangan",
+        "fontSize": 12,
+        "id": ""
+      },
+      {
+        "text": "00:00",
+        "fontSize": 12,
+        "id": "timer-display"
+      },
+      {
+        "text": "Pilih giliran:",
+        "fontSize": 11,
+        "id": "sidebar-sub"
+      },
+      {
+        "text": "Tim Elang\n          \n         ",
+        "fontSize": 13.3333,
+        "id": "team-card-btn"
+      },
+      {
+        "text": "Tim Elang\n          \n         ",
+        "fontSize": 13.3333,
+        "id": "team-card-top"
+      },
+      {
+        "text": "Tim Elang",
+        "fontSize": 13,
+        "id": "team-name-text"
+      }
+    ],
+    "cluesBottom": 552.125,
+    "hotsTop": 0,
+    "collisionDetected": false,
+    "viewportSqueeze": {
+      "windowWidth": 667,
+      "windowHeight": 375,
+      "appWidth": 667,
+      "appHeight": 375,
+      "isLetterboxed": false,
+      "bodyScrollHeight": 375
+    }
+  },
+  "iPhone 13/14 Landscape": {
+    "smallTouchTargetsCount": 3,
+    "smallTouchTargetsSample": [
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-menu",
+        "text": "Menu",
+        "width": 87,
+        "height": 38,
+        "top": 5,
+        "left": 92
+      },
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-sound",
+        "text": "",
+        "width": 40,
+        "height": 40,
+        "top": 4,
+        "left": 662
+      },
+      {
+        "tag": "BUTTON",
+        "id": "btn-board-fullscreen",
+        "text": "",
+        "width": 40,
+        "height": 40,
+        "top": 4,
+        "left": 712
+      }
+    ],
+    "smallFontsCount": 45,
+    "smallFontsSample": [
+      {
+        "text": "Menu",
+        "fontSize": 13,
+        "id": ""
+      },
+      {
+        "text": "Kasus 1 dari 12",
+        "fontSize": 13,
+        "id": "case-progress-text"
+      },
+      {
+        "text": "Kasus Tantangan",
+        "fontSize": 12,
+        "id": ""
+      },
+      {
+        "text": "00:00",
+        "fontSize": 12,
+        "id": "timer-display"
+      },
+      {
+        "text": "Pilih giliran:",
+        "fontSize": 11,
+        "id": "sidebar-sub"
+      },
+      {
+        "text": "Tim Elang\n          \n         ",
+        "fontSize": 13.3333,
+        "id": "team-card-btn"
+      },
+      {
+        "text": "Tim Elang\n          \n         ",
+        "fontSize": 13.3333,
+        "id": "team-card-top"
+      },
+      {
+        "text": "Tim Elang",
+        "fontSize": 13,
+        "id": "team-name-text"
+      }
+    ],
+    "cluesBottom": 525.125,
+    "hotsTop": 0,
+    "collisionDetected": false,
+    "viewportSqueeze": {
+      "windowWidth": 844,
+      "windowHeight": 390,
+      "appWidth": 693,
+      "appHeight": 390,
+      "isLetterboxed": true,
+      "bodyScrollHeight": 390
+    }
+  }
+}

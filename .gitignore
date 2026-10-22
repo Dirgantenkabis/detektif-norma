@@ -1,6 +1,7 @@
 # Root screenshot dumps
 screenshot_*.png
 result_screen_*.png
+baseline_tv/*.png
 
 # Temporary scratch & prompt text files
 prompt_*.txt

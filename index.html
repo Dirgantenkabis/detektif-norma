@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#1B382B">
   <title>Detektif Norma - Game Pembelajaran PPKn Kelas 5 SD</title>
   <link rel="stylesheet" href="style.css">
@@ -308,6 +308,22 @@
             </button>
           </div>
         </header>
+
+        <!-- Bilah Info Browser Dalam Aplikasi (Instagram / FB WebView) -->
+        <div id="inapp-browser-banner" class="mobile-notice-banner" style="display: none;">
+          <span>Buka di browser (Chrome/Safari) agar suara dan layar penuh berfungsi.</span>
+          <button class="btn-close-notice" id="btn-close-inapp-banner" aria-label="Tutup Pemberitahuan">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-close"></use></svg>
+          </button>
+        </div>
+
+        <!-- Saran Memutar HP (Khusus Mode HP Tegak) -->
+        <div id="rotate-phone-banner" class="mobile-notice-banner rotate-tip-banner" style="display: none;">
+          <span>Putar HP ke posisi mendatar untuk tampilan lebih leluasa.</span>
+          <button class="btn-close-notice" id="btn-close-rotate-banner" aria-label="Tutup Saran">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-close"></use></svg>
+          </button>
+        </div>
 
         <!-- Konten Tengah Layar Awal -->
         <div class="start-center-content">
@@ -976,6 +992,11 @@
               <li><strong>Jeda:</strong> Menghentikan sementara waktu permainan saat guru memberi penjelasan.</li>
               <li><strong>Selesai Sekarang:</strong> Mengakhiri sesi permainan kapan saja dan langsung menghitung hasil.</li>
             </ul>
+          </div>
+
+          <div class="rule-block rule-mobile-hint">
+            <h4>Bermain Menggunakan HP:</h4>
+            <p>Satu HP bisa dipakai bergantian: pemegang HP berperan sebagai guru. Di iPhone, matikan mode senyap agar suara terdengar.</p>
           </div>
         </div>
       </div>
