@@ -1,0 +1,17 @@
+# Root screenshot dumps
+screenshot_*.png
+result_screen_*.png
+
+# Temporary scratch & prompt text files
+prompt_*.txt
+scratch_prompt*.txt
+
+# Python cache & test artifacts
+__pycache__/
+*.pyc
+
+# IDE & Editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

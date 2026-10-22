@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1B382B">
+  <title>Detektif Norma - Game Pembelajaran PPKn Kelas 5 SD</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ====================================================================
+       SPRITE SVG INLINE (SATU GAYA: 24px grid, stroke-width 2.5, rounded)
+       ==================================================================== -->
+  <svg id="svg-sprite" xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true">
+    <defs>
+      <!-- Filter Tekstur Tinta Stempel Tidak Rata (feTurbulence) -->
+      <filter id="filter-stamp-ink" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.14" numOctaves="4" result="noise" />
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -8" in="noise" result="alphaMask" />
+        <feComposite in="SourceGraphic" in2="alphaMask" operator="in" />
+      </filter>
+    </defs>
+
+    <!-- Kaca Pembesar -->
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="7"/>
+      <path d="M16.5 16.5L21 21"/>
+    </symbol>
+
+    <!-- Berkas / Dokumen -->
+    <symbol id="icon-document" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 3h8l5 5v13H6z"/>
+      <path d="M14 3v5h5"/>
+      <path d="M9 13h6"/>
+      <path d="M9 17h4"/>
+    </symbol>
+
+    <!-- Stopwatch -->
+    <symbol id="icon-stopwatch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="13" r="8"/>
+      <path d="M12 9v4l2.5 1.5"/>
+      <path d="M10 2h4"/>
+      <path d="M12 2v3"/>
+    </symbol>
+
+    <!-- Suara Hidup -->
+    <symbol id="icon-volume-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 15h4l5 4V5l-5 4H4z"/>
+      <path d="M17 9a5 5 0 0 1 0 6"/>
+      <path d="M19.5 6.5a8.5 8.5 0 0 1 0 11"/>
+    </symbol>
+
+    <!-- Suara Mati -->
+    <symbol id="icon-volume-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 15h4l5 4V5l-5 4H4z"/>
+      <path d="M17 9l5 6"/>
+      <path d="M22 9l-5 6"/>
+    </symbol>
+
+    <!-- Layar Penuh -->
+    <symbol id="icon-fullscreen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 9V4h5"/>
+      <path d="M20 9V4h-5"/>
+      <path d="M4 15v5h5"/>
+      <path d="M20 15v5h-5"/>
+    </symbol>
+
+    <!-- Menu / Pintu -->
+    <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 21h16"/>
+      <path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17"/>
+      <circle cx="14.5" cy="12.5" r="1" fill="currentColor"/>
+    </symbol>
+
+    <!-- Kelompok / Users -->
+    <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="8" r="4"/>
+      <path d="M2 19a7 7 0 0 1 14 0"/>
+      <circle cx="17" cy="8" r="3"/>
+      <path d="M16 14a5 5 0 0 1 6 5"/>
+    </symbol>
+
+    <!-- Buku Panduan -->
+    <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+      <path d="M8 7h8"/>
+      <path d="M8 11h6"/>
+    </symbol>
+
+    <!-- Piala -->
+    <symbol id="icon-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 4h12v6a6 6 0 0 1-12 0V4z"/>
+      <path d="M6 6H3a2 2 0 0 0-2 2v1a4 4 0 0 0 4 4h1"/>
+      <path d="M18 6h3a2 2 0 0 1 2 2v1a4 4 0 0 1-4 4h-1"/>
+      <path d="M12 16v4"/>
+      <path d="M8 20h8"/>
+    </symbol>
+
+    <!-- Info -->
+    <symbol id="icon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 8h.01"/>
+      <path d="M11 12h1v5h1"/>
+    </symbol>
+
+    <!-- Jeda -->
+    <symbol id="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="5" width="4" height="14" rx="1.5"/>
+      <rect x="14" y="5" width="4" height="14" rx="1.5"/>
+    </symbol>
+
+    <!-- Lanjutkan / Play -->
+    <symbol id="icon-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="7,5 19,12 7,19"/>
+    </symbol>
+
+    <!-- Batalkan / Undo -->
+    <symbol id="icon-undo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9h11a5 5 0 0 1 0 10H8"/>
+      <path d="M7 5L3 9l4 4"/>
+    </symbol>
+
+    <!-- Bendera Selesai -->
+    <symbol id="icon-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 21V4"/>
+      <path d="M5 4c4-2 6 2 10 0 2-1 4-1 4-1v10s-2 0-4 1c-4 2-6-2-10 0"/>
+    </symbol>
+
+    <!-- Bintang -->
+    <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="12,2 15,8.5 22,9.3 17,14 18.5,21 12,17.5 5.5,21 7,14 2,9.3 9,8.5"/>
+    </symbol>
+
+    <!-- Lampu Petunjuk -->
+    <symbol id="icon-lightbulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18h6"/>
+      <path d="M10 21h4"/>
+      <path d="M12 3a7 7 0 0 0-5 11.9c.7.7 1 1.6 1 2.6v.5h8v-.5c0-1 .3-1.9 1-2.6A7 7 0 0 0 12 3z"/>
+    </symbol>
+
+    <!-- Pensil / Ubah -->
+    <symbol id="icon-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+    </symbol>
+
+    <!-- Megafon / Penyaji -->
+    <symbol id="icon-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 11v2a2 2 0 0 0 2 2h2l6 4V5L7 9H5a2 2 0 0 0-2 2z"/>
+      <path d="M17 9a4 4 0 0 1 0 6"/>
+      <path d="M19 6a7 7 0 0 1 0 12"/>
+    </symbol>
+
+    <!-- Gembok -->
+    <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="11" width="14" height="10" rx="2"/>
+      <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+      <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+    </symbol>
+
+    <!-- Centang -->
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </symbol>
+
+    <!-- Panah Kanan -->
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14"/>
+      <path d="M13 6l6 6-6 6"/>
+    </symbol>
+
+    <!-- Panah Kiri -->
+    <symbol id="icon-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5"/>
+      <path d="M11 18l-6-6 6-6"/>
+    </symbol>
+
+    <!-- Simpan / Disket -->
+    <symbol id="icon-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+      <polyline points="17 21 17 13 7 13 7 21"/>
+      <polyline points="7 3 7 8 15 8"/>
+    </symbol>
+
+    <!-- Buka Berkas / Folder -->
+    <symbol id="icon-folder-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 20h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-7l-2-2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2z"/>
+      <path d="M2 13h20"/>
+    </symbol>
+
+    <!-- Tempat Sampah -->
+    <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3 6 5 6 21 6"/>
+      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/>
+      <path d="M10 11v6"/>
+      <path d="M14 11v6"/>
+      <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+    </symbol>
+
+    <!-- Peringatan / Tanda Seru -->
+    <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2L2 20h20L12 2z"/>
+      <path d="M12 9v5"/>
+      <circle cx="12" cy="17" r="1" fill="currentColor"/>
+    </symbol>
+
+    <!-- Pertanyaan -->
+    <symbol id="icon-question" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+      <circle cx="12" cy="17" r="1" fill="currentColor"/>
+    </symbol>
+
+    <!-- Silang Tutup -->
+    <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 6L6 18"/>
+      <path d="M6 6l12 12"/>
+    </symbol>
+
+    <!-- Api / Kasus Tantangan -->
+    <symbol id="icon-fire" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2c1 3 4 5 4 9a6 6 0 1 1-12 0c0-4 3-7 4-9 1 2 2 3 4 0z"/>
+      <path d="M12 14a2 2 0 0 1 2 2c0 2-2 3-2 3s-2-1-2-3a2 2 0 0 1 2-2z"/>
+    </symbol>
+
+    <!-- Main Lagi / Replay -->
+    <symbol id="icon-replay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12a9 9 0 0 1 15-6.7L21 8"/>
+      <path d="M21 3v5h-5"/>
+      <path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+      <path d="M3 21v-5h5"/>
+    </symbol>
+
+    <!-- Rumah / Menu Utama -->
+    <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </symbol>
+
+    <!-- Norma Agama (Tempat Ibadah Sakral) -->
+    <symbol id="icon-norma-agama" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2v3"/>
+      <path d="M12 5c-3 0-5 2.5-5 5h10c0-2.5-2-5-5-5z"/>
+      <path d="M4 10h16v11H4z"/>
+      <path d="M9 21v-5a3 3 0 0 1 6 0v5"/>
+      <path d="M2 21h20"/>
+    </symbol>
+
+    <!-- Norma Kesusilaan (Hati Nurani) -->
+    <symbol id="icon-norma-kesusilaan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </symbol>
+
+    <!-- Norma Kesopanan (Dua Tangan Berjabat / Kesantunan) -->
+    <symbol id="icon-norma-kesopanan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 15h2l4-4-2-2-4 4-2-2-4 4 2 2 3-1z"/>
+      <path d="M2 13l5-5 4 4"/>
+      <path d="M22 13l-5-5-4 4"/>
+      <path d="M2 17l4 4"/>
+      <path d="M22 17l-4 4"/>
+    </symbol>
+
+    <!-- Norma Hukum (Timbangan Keadilan) -->
+    <symbol id="icon-norma-hukum" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v18"/>
+      <path d="M8 21h8"/>
+      <path d="M4 7h16"/>
+      <path d="M4 7l3 7h-6l3-7z"/>
+      <path d="M20 7l3 7h-6l3-7z"/>
+      <circle cx="12" cy="4" r="1.5" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <!-- Viewport 16:9 Utama Responsif -->
+  <main id="app-viewport">
+
+    <!-- ====================================================================
+         LAYAR 1: LAYAR AWAL
+         ==================================================================== -->
+    <section id="screen-start" class="screen active" aria-label="Layar Awal">
+      <div class="cork-board start-board">
+        <!-- Top Toolbar Kecil -->
+        <header class="start-toolbar">
+          <div class="toolbar-group-left">
+            <button id="btn-sound-toggle" class="btn btn-sm" aria-label="Toggle Suara">
+              <span id="sound-icon-container">
+                <svg class="ui-icon" aria-hidden="true"><use href="#icon-volume-on"></use></svg>
+              </span>
+              <span id="sound-text">Suara ON</span>
+            </button>
+            <button id="btn-fullscreen-toggle" class="btn btn-sm" aria-label="Layar Penuh">
+              <svg class="ui-icon" aria-hidden="true"><use href="#icon-fullscreen"></use></svg>
+              <span id="fullscreen-text">Layar Penuh</span>
+            </button>
+          </div>
+          <div class="toolbar-group-right">
+            <button id="btn-how-to-play" class="btn btn-sm">
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-book"></use></svg>
+              <span>Cara Main</span>
+            </button>
+            <button id="btn-view-leaderboard" class="btn btn-sm">
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-trophy"></use></svg>
+              <span>Peringkat</span>
+            </button>
+            <button id="btn-about" class="btn btn-sm">
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-info"></use></svg>
+              <span>Tentang</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Konten Tengah Layar Awal -->
+        <div class="start-center-content">
+          <div class="start-hero-grid">
+            <!-- Kolom Kiri: Ilustrasi Detektif Besar (Berkas + Stempel + Kaca Pembesar) -->
+            <div class="hero-illustration-wrap" aria-hidden="true">
+              <svg class="hero-detective-svg" viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Bayangan Berkas -->
+                <rect x="24" y="34" width="230" height="200" rx="12" fill="#23180F" opacity="0.3"/>
+                
+                <!-- Berkas Kasus Dokumen Krem (Folder) -->
+                <rect x="20" y="28" width="230" height="200" rx="12" fill="#FBF6E9" stroke="#23180F" stroke-width="5"/>
+                
+                <!-- Tab Folder Atas -->
+                <path d="M20 50V38C20 32.4772 24.4772 28 30 28H100L115 44H238C243.523 44 248 48.4772 248 54V60H20V50Z" fill="#EEDAA2" stroke="#23180F" stroke-width="4"/>
+                <text x="36" y="42" font-family="'ui-rounded', 'Nunito', sans-serif" font-size="10" font-weight="900" fill="#23180F" letter-spacing="1">KASUS #01 DETEKTIF</text>
+
+                <!-- Garis-Garis Teks Berkas Dokumen -->
+                <rect x="42" y="76" width="130" height="8" rx="4" fill="#EEDAA2"/>
+                <rect x="42" y="94" width="165" height="6" rx="3" fill="#E2C98A"/>
+                <rect x="42" y="108" width="150" height="6" rx="3" fill="#E2C98A"/>
+                <rect x="42" y="122" width="110" height="6" rx="3" fill="#E2C98A"/>
+
+                <!-- Klip Logam di Sudut Kiri Atas Berkas -->
+                <path d="M46 16V40C46 45 42 49 37 49C32 49 28 45 28 40V24C28 20 31 17 35 17C39 17 42 20 42 24V38" stroke="#7F8C8D" stroke-width="4" stroke-linecap="round" fill="none"/>
+                <path d="M46 16V40C46 45 42 49 37 49C32 49 28 45 28 40V24C28 20 31 17 35 17C39 17 42 20 42 24V38" stroke="#23180F" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+
+                <!-- Stempel Merah Cap TERPECAHKAN di Berkas -->
+                <g transform="translate(110, 140) rotate(-10)">
+                  <rect x="0" y="0" width="125" height="48" rx="8" fill="none" stroke="#A93226" stroke-width="4" stroke-dasharray="8 2"/>
+                  <rect x="4" y="4" width="117" height="40" rx="6" fill="#FADBD8" fill-opacity="0.35" stroke="#A93226" stroke-width="1.5"/>
+                  <text x="62" y="24" text-anchor="middle" font-family="'ui-rounded', 'Nunito', sans-serif" font-size="9" font-weight="900" fill="#A93226" letter-spacing="1">KASUS DETEKTIF</text>
+                  <text x="62" y="38" text-anchor="middle" font-family="'ui-rounded', 'Nunito', sans-serif" font-size="14" font-weight="900" fill="#A93226" letter-spacing="1.5">TERPECAHKAN</text>
+                </g>
+
+                <!-- Kaca Pembesar Raksasa di Depan Berkas -->
+                <!-- Gagang Kayu -->
+                <g transform="rotate(-35 185 140)">
+                  <!-- Bayangan Gagang -->
+                  <path d="M198 165L265 232" stroke="#23180F" stroke-width="18" stroke-linecap="round" opacity="0.3"/>
+                  <!-- Logam Penghubung -->
+                  <rect x="180" y="148" width="14" height="12" rx="2" fill="#BDC3C7" stroke="#23180F" stroke-width="3"/>
+                  <!-- Gagang Kayu Bertekstur -->
+                  <path d="M190 158L255 223" stroke="#873600" stroke-width="14" stroke-linecap="round"/>
+                  <path d="M190 158L255 223" stroke="#5D4037" stroke-width="14" stroke-linecap="round" stroke-dasharray="14 12"/>
+                  <path d="M190 158L255 223" stroke="#23180F" stroke-width="18" stroke-linecap="round" fill="none" style="stroke-opacity:0.25;"/>
+                </g>
+
+                <!-- Lensa & Bingkai Emas Kaca Pembesar -->
+                <circle cx="155" cy="115" r="54" fill="#F1C40F" fill-opacity="0.15" stroke="#23180F" stroke-width="8"/>
+                <circle cx="155" cy="115" r="50" fill="#FFFFFF" fill-opacity="0.25" stroke="#F1C40F" stroke-width="6"/>
+                <!-- Kilau Cahaya pada Kaca -->
+                <path d="M130 85A42 42 0 0 1 185 85" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.8"/>
+                <circle cx="132" cy="98" r="4" fill="#FFFFFF" opacity="0.9"/>
+                
+                <!-- Bintang Keberhasilan Kecil -->
+                <path d="M260 70L263 78L271 80L265 86L266 94L260 90L254 94L255 86L249 80L257 78Z" fill="#F1C40F" stroke="#23180F" stroke-width="2"/>
+                <path d="M50 210L52 216L58 217L53 222L54 228L50 225L46 228L47 222L42 217L48 216Z" fill="#F1C40F" stroke="#23180F" stroke-width="2"/>
+              </svg>
+            </div>
+
+            <!-- Kolom Kanan: Judul, Badge, Tagline, dan Aksi -->
+            <div class="start-hero-content">
+              <div class="badge-sd">PPKn KELAS 5 SD</div>
+              
+              <div class="title-container">
+                <h1 class="game-main-title">DETEKTIF NORMA</h1>
+              </div>
+
+              <p class="game-tagline">
+                Pecahkan misteri aturan kehidupan: <strong>Agama</strong>, <strong>Kesusilaan</strong>, <strong>Kesopanan</strong>, dan <strong>Hukum</strong>!
+              </p>
+
+              <!-- Area Aksi Utama -->
+              <div class="start-actions">
+                <button id="btn-start-game" class="btn btn-primary-big start-btn-play">
+                  <svg class="ui-icon ui-icon-lg" aria-hidden="true"><use href="#icon-search"></use></svg>
+                  <span>MULAI PETUALANGAN BARU</span>
+                </button>
+
+                <!-- Tombol Resume Sesi Sebelumnya -->
+                <button id="btn-resume-previous" class="btn btn-action start-btn-resume" style="display: none;">
+                  <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-play"></use></svg>
+                  <div class="resume-btn-content">
+                    <span id="label-resume-title" class="resume-title">Lanjutkan dengan 5 kelompok</span>
+                    <span id="label-resume-sub" class="resume-sub">Tim Elang, Tim Harimau, Tim Kancil, Tim Banteng, Tim Rusa</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Kredit PRD -->
+        <footer class="start-footer">
+          <span>Materi: <strong>Bu Fina</strong>, SD Negeri Sindangbarang 02</span>
+          <span class="footer-dot">•</span>
+          <span>Hak Cipta © <strong>Mas Dirga</strong></span>
+        </footer>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         LAYAR 2: SETUP KELOMPOK CEPAT (1 KETUKAN)
+         ==================================================================== -->
+    <section id="screen-setup" class="screen" aria-label="Pengaturan Kelompok">
+      <div class="cork-board setup-board">
+        <header class="screen-header-simple setup-header-centered">
+          <h2 class="setup-header-title">SETUP KELOMPOK DETEKTIF</h2>
+        </header>
+
+        <div class="setup-center">
+          <div class="setup-prompt-card">
+            <h3 class="setup-question">Berapa kelompok yang bertugas hari ini?</h3>
+            <p class="setup-hint">Ketuk salah satu tombol di bawah untuk langsung mulai bermain:</p>
+            
+            <div class="group-count-grid">
+              <button class="btn btn-count-choice" data-count="2">
+                <span class="count-digit">2</span>
+                <span class="count-label">KELOMPOK</span>
+              </button>
+              <button class="btn btn-count-choice" data-count="3">
+                <span class="count-digit">3</span>
+                <span class="count-label">KELOMPOK</span>
+              </button>
+              <button class="btn btn-count-choice" data-count="4">
+                <span class="count-digit">4</span>
+                <span class="count-label">KELOMPOK</span>
+              </button>
+              <button class="btn btn-count-choice" data-count="5">
+                <span class="count-digit">5</span>
+                <span class="count-label">KELOMPOK</span>
+              </button>
+            </div>
+
+            <!-- Baris Nama Kelompok Selalu Terlihat -->
+            <div class="setup-names-strip">
+              <div class="setup-names-preview">
+                <span class="setup-names-label">Nama kelompok:</span>
+                <span id="setup-names-list-text" class="setup-names-values">Tim Elang, Tim Harimau, Tim Kancil, Tim Banteng, Tim Rusa</span>
+              </div>
+              <button id="btn-edit-group-names" class="btn btn-action btn-sm">
+                <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-pencil"></use></svg>
+                <span>Ubah</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Menu Awal di Pojok / Bawah Kartu -->
+        <div class="setup-bottom-bar">
+          <button id="btn-back-to-start" class="btn btn-secondary">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-arrow-left"></use></svg>
+            <span>Menu Awal</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         LAYAR 3: PAPAN KASUS UTAMA
+         ==================================================================== -->
+    <section id="screen-board" class="screen" aria-label="Papan Kasus Utama">
+      <!-- Header SATU Baris Tanpa Elemen Bertumpuk -->
+      <header id="board-header" class="board-top-bar">
+        <div class="header-left">
+          <button id="btn-board-menu" class="btn btn-sm">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-menu"></use></svg>
+            <span>Menu</span>
+          </button>
+        </div>
+        
+        <div class="header-center">
+          <div class="case-progress-badge">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-document"></use></svg>
+            <span id="case-progress-text">Kasus 1 dari 12</span>
+          </div>
+          <span id="hots-indicator" class="badge-hots" style="display: none;">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-fire"></use></svg>
+            <span>Kasus Tantangan</span>
+          </span>
+        </div>
+
+        <div class="header-right">
+          <div class="timer-badge" title="Waktu Berpikir Kelompok">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-stopwatch"></use></svg>
+            <span id="timer-display">00:00</span>
+          </div>
+          <button id="btn-board-sound" class="btn btn-sm btn-icon" aria-label="Toggle Suara">
+            <svg class="ui-icon" aria-hidden="true"><use href="#icon-volume-on"></use></svg>
+          </button>
+          <button id="btn-board-fullscreen" class="btn btn-sm btn-icon" aria-label="Layar Penuh">
+            <svg class="ui-icon" aria-hidden="true"><use href="#icon-fullscreen"></use></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Area Utama Papan Permainan -->
+      <div class="board-main-area">
+        <!-- Kolom Kiri: Papan Skor Semua Kelompok -->
+        <aside class="board-sidebar teams-sidebar">
+          <div class="sidebar-header">
+            <h3>
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-users"></use></svg>
+              <span>Papan Kelompok</span>
+            </h3>
+            <span class="sidebar-sub">Pilih giliran:</span>
+          </div>
+          <div id="teams-list-container" class="teams-vertical-list">
+            <!-- Diisi dinamis lewat JS -->
+          </div>
+        </aside>
+
+        <!-- Kolom Tengah: Berkas Kasus Kertas Krem Berklip -->
+        <div class="board-center-case">
+          <div id="case-folder" class="case-paper-folder">
+            <!-- Klip Logam Arsip -->
+            <div class="folder-metal-clip" aria-hidden="true"></div>
+
+            <!-- Header Berkas -->
+            <div class="folder-header">
+              <span id="folder-case-number" class="case-badge-number">BERKAS KASUS #01</span>
+              <span id="case-target-indicator" class="case-target-badge">PILIH KELOMPOK DI SEBELAH KIRI</span>
+            </div>
+
+            <!-- Teks Kasus Besar -->
+            <div class="folder-case-content">
+              <p id="folder-case-text" class="case-reading-text">
+                Memuat berkas kasus detektif...
+              </p>
+            </div>
+
+            <!-- 3 Slot Petunjuk Bertahap -->
+            <div class="clues-container">
+              <div id="clue-slot-1" class="clue-box locked" data-clue="1">
+                <span class="clue-number">Petunjuk 1</span>
+                <p class="clue-text">Terkunci...</p>
+              </div>
+              <div id="clue-slot-2" class="clue-box locked" data-clue="2">
+                <span class="clue-number">Petunjuk 2</span>
+                <p class="clue-text">Terkunci...</p>
+              </div>
+              <div id="clue-slot-3" class="clue-box locked" data-clue="3">
+                <span class="clue-number">Petunjuk 3</span>
+                <p class="clue-text">Terkunci...</p>
+              </div>
+            </div>
+
+            <!-- Baris Bawah Berkas: Feedback/Alasan di Kiri & Zona Stempel Khusus di Kanan (In-Place Seperti Pict 3) -->
+            <div class="folder-bottom-row">
+              <div class="folder-action-zone">
+                <!-- Feedback Bar / Pesan Hasil Jawaban -->
+                <div id="case-feedback-bar" class="feedback-banner" style="display: none;">
+                  <span id="feedback-icon">
+                    <svg class="ui-icon ui-icon-lg" aria-hidden="true"><use href="#icon-star"></use></svg>
+                  </span>
+                  <span id="feedback-text">Pesan evaluasi kasus</span>
+                </div>
+
+                <!-- Panel Alasan & Penjelasan In-Place (Bebas Tabrakan) -->
+                <div id="reason-panel" class="reason-review-panel" style="display: none;">
+                  <!-- Pertanyaan Lanjutan Kasus (HOTS) / Alasan Kasus Dasar -->
+                  <div id="hots-question-box" class="hots-prompt-box" style="display: none;">
+                    <span class="hots-prompt-tag">
+                      <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-question"></use></svg>
+                      <span id="hots-prompt-label">Pertanyaan Lanjutan Kasus:</span>
+                    </span>
+                    <p id="hots-question-text" class="hots-question-content"></p>
+                    <p id="hots-question-guide" class="hots-teacher-hint" style="display: none;"></p>
+                  </div>
+
+                  <!-- Tombol Penilaian Alasan oleh Guru (Fase 1) -->
+                  <div id="teacher-reason-actions" class="teacher-evaluation-box">
+                    <span class="eval-guide">Penilaian Alasan Lisan oleh Guru:</span>
+                    <div class="eval-buttons-row">
+                      <button id="btn-reason-sensible" class="btn btn-action btn-hold-eval" title="Tahan 1 detik untuk memberi poin">
+                        <span class="hold-progress-bar" id="hold-reason-bar"></span>
+                        <span class="btn-hold-text">
+                          <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-star"></use></svg>
+                          <span id="label-btn-sensible">Alasan Masuk Akal (Tahan 1 Detik)</span>
+                        </span>
+                      </button>
+                      <button id="btn-reason-pass" class="btn btn-secondary">
+                        Lanjut Tanpa Poin Alasan
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Box Penjelasan Ringkas Kasus (Fase 2) -->
+                  <div id="explanation-box" class="case-explanation-box" style="display: none;">
+                    <h4>
+                      <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-book"></use></svg>
+                      <span>Penjelasan Norma:</span>
+                    </h4>
+                    <p id="case-explanation-text"></p>
+                    <button id="btn-next-case" class="btn btn-primary-big btn-next-step">
+                      <span>Kasus Berikutnya</span>
+                      <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Zona Stempel Khusus (Kanan Bawah Berkas - Cap TERPECAHKAN Miring) -->
+              <div class="case-stamp-zone" aria-hidden="true">
+                <div id="stamp-terpecahkan" class="solved-stamp" aria-hidden="true">
+                  <div class="stamp-ink-ripple"></div>
+                  <div class="stamp-outer-frame">
+                    <div class="stamp-inner-frame">
+                      <div class="stamp-top-text">KASUS DETEKTIF</div>
+                      <div class="stamp-main-row">
+                        <svg class="ui-icon stamp-star" aria-hidden="true"><use href="#icon-star"></use></svg>
+                        <span class="stamp-word">TERPECAHKAN</span>
+                        <svg class="ui-icon stamp-star" aria-hidden="true"><use href="#icon-star"></use></svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bawah Tengah: 4 Stempel Karet Norma Fisik -->
+          <div class="stamps-section">
+            <div class="stamps-legend">
+              <span class="stamps-guide-text">Tekan salah satu stempel norma setelah kelompok diberi giliran:</span>
+            </div>
+            <div class="stamps-grid">
+              <button class="norma-stamp stamp-agama disabled" data-norma="agama" disabled>
+                <div class="stamp-wood-handle" aria-hidden="true">
+                  <div class="stamp-handle-ridge"></div>
+                </div>
+                <div class="stamp-pad-body">
+                  <div class="stamp-lock-icon" aria-hidden="true">
+                    <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-lock"></use></svg>
+                  </div>
+                  <span class="stamp-icon">
+                    <svg class="ui-icon ui-icon-xl stamp-svg-icon" aria-hidden="true"><use href="#icon-norma-agama"></use></svg>
+                  </span>
+                  <span class="stamp-name">AGAMA</span>
+                  <span class="stamp-desc">ajaran agama &amp; firman Tuhan</span>
+                </div>
+              </button>
+
+              <button class="norma-stamp stamp-kesusilaan disabled" data-norma="kesusilaan" disabled>
+                <div class="stamp-wood-handle" aria-hidden="true">
+                  <div class="stamp-handle-ridge"></div>
+                </div>
+                <div class="stamp-pad-body">
+                  <div class="stamp-lock-icon" aria-hidden="true">
+                    <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-lock"></use></svg>
+                  </div>
+                  <span class="stamp-icon">
+                    <svg class="ui-icon ui-icon-xl stamp-svg-icon" aria-hidden="true"><use href="#icon-norma-kesusilaan"></use></svg>
+                  </span>
+                  <span class="stamp-name">KESUSILAAN</span>
+                  <span class="stamp-desc">suara hati nurani &amp; kejujuran</span>
+                </div>
+              </button>
+
+              <button class="norma-stamp stamp-kesopanan disabled" data-norma="kesopanan" disabled>
+                <div class="stamp-wood-handle" aria-hidden="true">
+                  <div class="stamp-handle-ridge"></div>
+                </div>
+                <div class="stamp-pad-body">
+                  <div class="stamp-lock-icon" aria-hidden="true">
+                    <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-lock"></use></svg>
+                  </div>
+                  <span class="stamp-icon">
+                    <svg class="ui-icon ui-icon-xl stamp-svg-icon" aria-hidden="true"><use href="#icon-norma-kesopanan"></use></svg>
+                  </span>
+                  <span class="stamp-name">KESOPANAN</span>
+                  <span class="stamp-desc">tata krama pergaulan &amp; adat</span>
+                </div>
+              </button>
+
+              <button class="norma-stamp stamp-hukum disabled" data-norma="hukum" disabled>
+                <div class="stamp-wood-handle" aria-hidden="true">
+                  <div class="stamp-handle-ridge"></div>
+                </div>
+                <div class="stamp-pad-body">
+                  <div class="stamp-lock-icon" aria-hidden="true">
+                    <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-lock"></use></svg>
+                  </div>
+                  <span class="stamp-icon">
+                    <svg class="ui-icon ui-icon-xl stamp-svg-icon" aria-hidden="true"><use href="#icon-norma-hukum"></use></svg>
+                  </span>
+                  <span class="stamp-name">HUKUM</span>
+                  <span class="stamp-desc">aturan resmi negara &amp; sanksi tegas</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Panel Kontrol Guru -->
+        <aside class="board-sidebar teacher-sidebar">
+          <div class="sidebar-header">
+            <h3>
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-book"></use></svg>
+              <span>Panel Guru</span>
+            </h3>
+            <span class="sidebar-sub">Kendali Permainan</span>
+          </div>
+
+          <div class="teacher-controls-group">
+            <button id="btn-unlock-clue" class="btn btn-secondary teacher-btn">
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-search"></use></svg>
+              <span>Buka Petunjuk Berikutnya</span>
+            </button>
+            
+            <button id="btn-cancel-turn" class="btn btn-secondary teacher-btn" disabled>
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-undo"></use></svg>
+              <span>Batalkan Giliran</span>
+            </button>
+
+            <button id="btn-pause-game" class="btn btn-secondary teacher-btn">
+              <span id="pause-icon">
+                <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-pause"></use></svg>
+              </span>
+              <span id="pause-text">Jeda Game</span>
+            </button>
+
+            <hr class="teacher-divider">
+
+            <button id="btn-finish-now" class="btn btn-danger teacher-btn">
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-flag"></use></svg>
+              <span>Selesai Sekarang</span>
+            </button>
+          </div>
+
+          <div class="sidebar-footer-info">
+            <p>Pilih kelompok &rarr; Stempel aktif &rarr; Evaluasi alasan</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         LAYAR 4: LAYAR HASIL PERMAINAN
+         ==================================================================== -->
+    <section id="screen-result" class="screen" aria-label="Hasil Permainan">
+      <div class="cork-board result-board">
+        <header class="result-header">
+          <h2 class="result-title">HASIL PENYELIDIKAN KELAS</h2>
+          <p class="result-subtitle">Semua detektif hebat dan belajar banyak hari ini!</p>
+        </header>
+
+        <!-- Canvas Confetti Mandiri -->
+        <canvas id="confetti-canvas" class="confetti-overlay"></canvas>
+
+        <!-- Panggung Utama Hasil: Layout Flex Vertikal Terstruktur (Fase 1-5) -->
+        <div class="result-stage-container">
+          <!-- (b) Satu Baris Info Ringkas (2 Item Saja: Kasus & Kecepatan Rata-rata) -->
+          <div id="result-info-bar" class="result-info-bar">
+            <div class="info-pill-item">
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-document"></use></svg>
+              <strong id="hl-solved-count">12 dari 12 Kasus</strong>
+            </div>
+            <div class="info-pill-item">
+              <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-stopwatch"></use></svg>
+              <strong id="hl-class-speed">Rata-rata menjawab 5,1 dtk</strong>
+            </div>
+          </div>
+
+          <!-- (c) Podium 3 Besar (atau 2 Besar) -->
+          <div id="result-podium-container" class="result-podium-container">
+            <!-- Diisi dinamis oleh renderResultScreen() -->
+          </div>
+
+          <!-- (d) Baris Kelompok Sisa (Peringkat 4 & 5) -->
+          <div id="result-remaining-container" class="result-remaining-container" style="display: none;">
+            <!-- Diisi dinamis -->
+          </div>
+
+          <!-- Catatan Kaki Bintang Kecepatan (Jika ada kelompok < 3 jawaban benar) -->
+          <div id="result-speed-footnote" class="result-speed-footnote" style="display: none;">
+            <span>* Peringkat kecepatan butuh minimal 3 jawaban benar.</span>
+          </div>
+
+          <!-- (e) Strip Bawah: Pertanyaan Refleksi & Kasus Yang Perlu Dibahas -->
+          <div id="result-bottom-strip" class="result-bottom-strip">
+            <!-- Pertanyaan Refleksi HOTS -->
+            <div id="result-reflection-card" class="result-strip-card result-reflection-box">
+              <div class="strip-card-header">
+                <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-lightbulb"></use></svg>
+                <span class="strip-card-label">Untuk didiskusikan:</span>
+              </div>
+              <p class="strip-card-text" id="hl-reflection-question"></p>
+            </div>
+
+            <!-- Kasus yang Perlu Dibahas / Status Kasus Terpecahkan -->
+            <div id="result-unsolved-box" class="result-strip-card result-unsolved-box">
+              <!-- Diisi dinamis -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Layar Hasil -->
+        <footer class="result-actions-footer">
+          <button id="btn-result-replay-same" class="btn btn-primary-big">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-replay"></use></svg>
+            <span>Main Lagi (Kelompok Sama)</span>
+          </button>
+          <button id="btn-result-leaderboard" class="btn btn-action">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-trophy"></use></svg>
+            <span>Papan Peringkat Kecepatan</span>
+          </button>
+          <button id="btn-result-menu" class="btn btn-secondary">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-home"></use></svg>
+            <span>Menu Utama</span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         LAYAR 5: PAPAN PERINGKAT KECEPATAN (REKOR KELAS)
+         ==================================================================== -->
+    <section id="screen-leaderboard" class="screen" aria-label="Papan Peringkat Kecepatan">
+      <div class="cork-board leaderboard-board">
+        <header class="screen-header-simple">
+          <button id="btn-back-from-leaderboard" class="btn btn-sm">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-arrow-left"></use></svg>
+            <span>Kembali</span>
+          </button>
+          <h2 class="setup-header-title">PAPAN PERINGKAT KECEPATAN DETEKTIF</h2>
+          <div class="leaderboard-meta-tag">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-stopwatch"></use></svg>
+            <span>Jawaban Benar Tercepat</span>
+          </div>
+        </header>
+
+        <div class="leaderboard-content-wrapper">
+          <div class="leaderboard-table-card">
+            <div class="leaderboard-info-banner">
+              <span>
+                <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-info"></use></svg>
+                Peringkat dihitung dari <strong>rata-rata waktu berpikir pada jawaban benar</strong> (makin cepat makin tinggi). Syarat masuk: minimal 3 jawaban benar dalam satu sesi.
+              </span>
+            </div>
+
+            <div class="table-container">
+              <table class="leaderboard-table">
+                <thead>
+                  <tr>
+                    <th>Peringkat</th>
+                    <th>Nama Kelompok</th>
+                    <th>Rata-rata Waktu</th>
+                    <th>Total Skor</th>
+                    <th>Tanggal Main</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboard-rows">
+                  <!-- Diisi dinamis -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Tombol Guru untuk Kelola Rekor -->
+            <div class="leaderboard-admin-bar">
+              <span class="admin-label">Alat Guru:</span>
+              <button id="btn-export-backup" class="btn btn-sm">
+                <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-save"></use></svg>
+                <span>Ekspor Cadangan (.json)</span>
+              </button>
+              <label for="import-file-input" class="btn btn-sm import-label">
+                <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-folder-open"></use></svg>
+                <span>Impor Cadangan</span>
+              </label>
+              <input type="file" id="import-file-input" accept=".json" style="display: none;">
+              <button id="btn-reset-leaderboard" class="btn btn-sm btn-danger btn-hold-reset">
+                <span class="hold-reset-bar" id="hold-reset-bar"></span>
+                <span class="hold-reset-text">
+                  <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-trash"></use></svg>
+                  <span>Hapus Rekor (Tahan 2 Detik)</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         MODAL 1: TENTANG PEMBUAT & MATERI
+         ==================================================================== -->
+    <div id="modal-about" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="about-title">
+      <div class="modal-card">
+        <header class="modal-header">
+          <h3 id="about-title" class="modal-title">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-info"></use></svg>
+            <span>Tentang Detektif Norma</span>
+          </h3>
+          <button class="btn-close-modal" data-close="modal-about" aria-label="Tutup Modal">
+            <svg class="ui-icon ui-icon-lg" aria-hidden="true"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="modal-body">
+          <div class="profile-hero-row">
+            <div class="profile-avatar-circle">
+              <!-- Fallback SVG jika profil.png tidak ada di assets -->
+              <img id="profile-img" src="assets/profil.png" alt="Foto Mas Dirga" onerror="this.style.display='none'; document.getElementById('profile-svg-fallback').style.display='block';">
+              <svg id="profile-svg-fallback" width="96" height="96" viewBox="0 0 96 96" fill="none" style="display: none;">
+                <circle cx="48" cy="48" r="46" fill="#CE9B61" stroke="#221810" stroke-width="4"/>
+                <circle cx="48" cy="38" r="18" fill="#FBF6E9" stroke="#221810" stroke-width="3"/>
+                <path d="M22 82C22 66 34 58 48 58C62 58 74 66 74 82" fill="#E89E19" stroke="#221810" stroke-width="4"/>
+                <circle cx="42" cy="36" r="3" fill="#221810"/>
+                <circle cx="54" cy="36" r="3" fill="#221810"/>
+                <path d="M44 44C46 46 50 46 52 44" stroke="#221810" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="profile-text">
+              <p class="greeting-lead">
+                Halo, teman-teman! Tak kenal maka tak sayang, jadi kenalan dulu, ya!
+              </p>
+              <p class="greeting-body">
+                Aku <strong>Mas Dirga</strong>, yang bikin game ini. Aku senang banget bisa belajar bareng kalian. Selamat bermain dan jadilah detektif yang teliti serta jujur!
+              </p>
+            </div>
+          </div>
+
+          <hr class="modal-separator">
+
+          <div class="credits-meta">
+            <p><strong>Kontak Pembuat:</strong> [ISI KONTAK]</p>
+            <p><strong>Materi Pembelajaran:</strong> Bu Fina, SD Negeri Sindangbarang 02</p>
+            <p><strong>Teknologi:</strong> Vanilla HTML, CSS, JavaScript (Bisa Berjalan 100% Offline)</p>
+            <p class="sub-credit">Ilustrasi dibuat dengan bantuan AI.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         MODAL 2: CARA MAIN & PANDUAN GURU
+         ==================================================================== -->
+    <div id="modal-rules" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="rules-title">
+      <div class="modal-card">
+        <header class="modal-header">
+          <h3 id="rules-title" class="modal-title">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-book"></use></svg>
+            <span>Petunjuk Permainan &amp; Tombol Guru</span>
+          </h3>
+          <button class="btn-close-modal" data-close="modal-rules" aria-label="Tutup Modal">
+            <svg class="ui-icon ui-icon-lg" aria-hidden="true"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="modal-body rules-body-content">
+          <div class="rule-block">
+            <h4>Alur 1 Kasus:</h4>
+            <ol class="rule-steps">
+              <li><strong>Kasus &amp; Petunjuk 1 Terbuka:</strong> Timer berpikir otomatis berjalan.</li>
+              <li><strong>Musyawarah Kelompok:</strong> Kelompok berdiskusi menentukan jenis norma. Kelompok yang siap segera mengacungkan tangan.</li>
+              <li><strong>Guru Memilih Kelompok:</strong> Guru mengetuk nama kelompok di sisi kiri layar. Tombol stempel norma akan aktif khusus untuk kelompok tersebut.</li>
+              <li><strong>Menekan Stempel Norma:</strong> Perwakilan kelompok maju menekan satu stempel norma (Agama, Kesusilaan, Kesopanan, atau Hukum).</li>
+              <li><strong>Evaluasi &amp; Alasan:</strong> Jika benar (+poin tebakan), kelompok menyampaikan alasan lisan. Guru menilai dengan menahan tombol <em>Alasan Masuk Akal</em> (1 detik) untuk poin tambahan.</li>
+            </ol>
+          </div>
+
+          <div class="rule-block">
+            <h4>Fungsi Tombol Kendali Guru:</h4>
+            <ul class="rule-list">
+              <li><strong>Buka Petunjuk:</strong> Membuka petunjuk berikutnya jika kelompok butuh bantuan tambahan.</li>
+              <li><strong>Batalkan Giliran:</strong> Mengembalikan status jika guru salah mengetuk kelompok tanpa mempengaruhi skor.</li>
+              <li><strong>Jeda:</strong> Menghentikan sementara waktu permainan saat guru memberi penjelasan.</li>
+              <li><strong>Selesai Sekarang:</strong> Mengakhiri sesi permainan kapan saja dan langsung menghitung hasil.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         MODAL 3: KARTU PENGINGAT PERAN & ATURAN BESAR
+         ==================================================================== -->
+    <div id="modal-role-reminder" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="roles-title">
+      <div class="modal-card modal-roles-card">
+        <header class="modal-header modal-header-center">
+          <h3 id="roles-title" class="modal-title">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-document"></use></svg>
+            <span>Pengingat Peran &amp; Aturan Detektif</span>
+          </h3>
+        </header>
+        <div class="modal-body">
+          <div class="golden-rule-banner">
+            <span class="banner-badge">ATURAN UTAMA KELAS</span>
+            <p class="golden-rule-text">"Tidak boleh mengejek jawaban kelompok lain!"</p>
+          </div>
+
+          <div class="roles-compact-list">
+            <div class="role-compact-item">
+              <span class="role-compact-icon">
+                <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-search"></use></svg>
+              </span>
+              <strong class="role-compact-title">1. Pembaca Kartu:</strong>
+              <span class="role-compact-desc">Membaca teks kasus dan petunjuk dengan lantang &amp; jelas.</span>
+            </div>
+            <div class="role-compact-item">
+              <span class="role-compact-icon">
+                <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-lightbulb"></use></svg>
+              </span>
+              <strong class="role-compact-title">2. Pengarah Tim:</strong>
+              <span class="role-compact-desc">Memimpin musyawarah dan memilih stempel norma yang tepat.</span>
+            </div>
+            <div class="role-compact-item">
+              <span class="role-compact-icon">
+                <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-document"></use></svg>
+              </span>
+              <strong class="role-compact-title">3. Pencatat:</strong>
+              <span class="role-compact-desc">Menyimak bukti penting dan mencatat kata kunci petunjuk.</span>
+            </div>
+            <div class="role-compact-item">
+              <span class="role-compact-icon">
+                <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-megaphone"></use></svg>
+              </span>
+              <strong class="role-compact-title">4. Penyaji Alasan:</strong>
+              <span class="role-compact-desc">Menjelaskan alasan kelompok secara santun kepada Guru.</span>
+            </div>
+          </div>
+        </div>
+        <footer class="modal-footer modal-footer-center">
+          <button id="btn-proceed-to-game" class="btn btn-primary-big">
+            <span>Siap Menyelidiki Kasus</span>
+          </button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         MODAL 4: UBAH NAMA KELOMPOK
+         ==================================================================== -->
+    <div id="modal-edit-names" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="edit-names-title">
+      <div class="modal-card">
+        <header class="modal-header">
+          <h3 id="edit-names-title" class="modal-title">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-pencil"></use></svg>
+            <span>Sesuaikan Nama Kelompok</span>
+          </h3>
+          <button class="btn-close-modal" data-close="modal-edit-names" aria-label="Tutup Modal">
+            <svg class="ui-icon ui-icon-lg" aria-hidden="true"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="modal-body">
+          <div id="edit-names-inputs-container" class="names-edit-list">
+            <!-- Diisi dinamis -->
+          </div>
+        </div>
+        <footer class="modal-footer">
+          <button id="btn-save-custom-names" class="btn btn-action">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-save"></use></svg>
+            <span>Simpan Nama</span>
+          </button>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         MODAL 5: KONFIRMASI KELUAR / TINDAKAN PENTING
+         ==================================================================== -->
+    <div id="modal-confirm" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <div class="modal-card modal-confirm-card">
+        <header class="modal-header">
+          <h3 id="confirm-title" class="modal-title">
+            <svg class="ui-icon ui-icon-inline" aria-hidden="true"><use href="#icon-alert"></use></svg>
+            <span>Konfirmasi</span>
+          </h3>
+          <button class="btn-close-modal" data-close="modal-confirm" aria-label="Tutup Modal">
+            <svg class="ui-icon ui-icon-lg" aria-hidden="true"><use href="#icon-close"></use></svg>
+          </button>
+        </header>
+        <div class="modal-body">
+          <p id="confirm-message" class="confirm-text">
+            Apakah kamu yakin ingin keluar ke Menu Utama? Kemajuan sesi saat ini akan disimpan di hasil.
+          </p>
+        </div>
+        <footer class="modal-footer confirm-footer-buttons">
+          <button id="btn-confirm-yes" class="btn btn-danger">
+            <span>Ya, Keluar</span>
+          </button>
+          <button id="btn-confirm-no" class="btn btn-secondary">
+            <span>Lanjut Main</span>
+          </button>
+        </footer>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Script data.js dan game.js (Tanpa library, tanpa CDN) -->
+  <script src="data.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
